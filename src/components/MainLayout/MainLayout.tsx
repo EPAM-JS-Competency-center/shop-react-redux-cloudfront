@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        My Store
+        My deploy AWS
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -23,9 +23,20 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(8),
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "lightgray",
     padding: theme.spacing(6),
   },
+    footerLink : {
+      textDecoration: "none",
+        cursor: "pointer",
+        color: "grey",
+        transition: "0.6s",
+        '&:hover': {
+            color: "#3f51b5",
+            fontWeight: "600"
+        }
+    },
+
 }));
 
 const MainLayout: React.FC = ({children}) => {
@@ -41,7 +52,7 @@ const MainLayout: React.FC = ({children}) => {
       </main>
       <footer className={classes.footer}>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Thank you for your purchase!
+          <a className={classes.footerLink} href = "https://github.com/Nazimkov-1984"> by Mykola Nazimkov</a>
         </Typography>
         <Copyright/>
       </footer>

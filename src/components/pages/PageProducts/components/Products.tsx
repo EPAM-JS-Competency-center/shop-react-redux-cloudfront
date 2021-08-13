@@ -15,9 +15,16 @@ import productList from "./productList.json";
 
 const useStyles = makeStyles((theme) => ({
   card: {
+    backgroundColor: "cyan",
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
+    transition: "0.8s",
+    '&:hover': {
+      boxShadow: "10px 10px 10px rgba(0,0,0,0.5)",
+      cursor: "pointer"
+
+    }
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
