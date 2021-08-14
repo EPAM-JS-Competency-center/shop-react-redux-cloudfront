@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Review your cart', 'Shipping address', 'Review your order'];
 
-const initialAddressValues: any = AddressSchema.cast();
+const initialAddressValues: any = AddressSchema.cast({});
 
 const CartIsEmpty = () => (
   <Typography variant="h6" gutterBottom>
