@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Application Links
+* S3 - [http://vvreshch.s3-website.eu-central-1.amazonaws.com/](http://vvreshch.s3-website.eu-central-1.amazonaws.com/)
+* Cloud Front - [https://d21aub1rx2ch4y.cloudfront.net/](https://d21aub1rx2ch4y.cloudfront.net/)
+* Deployment with serverless 
+    * Infrastructure Setup `npm run cloudfront:setup`
+    * Get Website URL `npm run cloudfront:domainInfo`
+    * Deploy website `npm run client:deploy`
+
+
 ## Available Scripts
 
 In the project directory, you can run:  

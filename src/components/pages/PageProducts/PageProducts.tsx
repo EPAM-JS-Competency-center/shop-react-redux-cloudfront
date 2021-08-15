@@ -13,6 +13,7 @@ export default function PageProducts() {
 
   return (
     <div className={classes.content}>
+      <h1>Test Change</h1>
       <Products/>
     </div>
   );

@@ -5,6 +5,8 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: dev
+  region: eu-central-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -17,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: vvreshch-task-2-node-in-aws-web-bucket
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -38,7 +40,7 @@ resources:
         # VersioningConfiguration:
         #   Status: Enabled
 
-    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
+    ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
     WebAppS3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
