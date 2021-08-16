@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {OrderItem} from "models/Order";
-import axios from 'axios';
-import {useParams} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { OrderItem } from "models/Order";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 import PaperLayout from "components/PaperLayout/PaperLayout";
 import Typography from "@material-ui/core/Typography";
 import API_PATHS from "constants/apiPaths";
-import {CartItem} from "models/CartItem";
-import {Product} from "models/Product";
+import { CartItem } from "models/CartItem";
+import { Product } from "models/Product";
 import ReviewOrder from "components/pages/PageCart/components/ReviewOrder";
-import {ORDER_STATUS, ORDER_STATUS_FLOW} from "constants/order";
+import { ORDER_STATUS, ORDER_STATUS_FLOW } from "constants/order";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
-import {Field, Formik, FormikProps, FormikValues} from "formik";
+import { Field, Formik, FormikProps, FormikValues } from "formik";
 import Grid from "@material-ui/core/Grid";
-import {TextField} from "formik-material-ui";
+import { TextField } from "formik-material-ui";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
@@ -44,9 +44,9 @@ const Form = (props: FormikProps<FormikValues>) => {
     // onGetCitizen,
     // shouldConfirmLeave,
   } = props;
-  let helperText = '';
-  if ((values.status) === ORDER_STATUS.approved) {
-    helperText = 'Setting status to APPROVED will decrease products count from stock!!!';
+  let helperText = "";
+  if (values.status === ORDER_STATUS.approved) {
+    helperText = "Setting status to APPROVED will decrease products count from stock!!!";
   }
   // TODO add check if status was changed from approved to cancelled
   //  to increase product count back again
@@ -66,7 +66,7 @@ const Form = (props: FormikProps<FormikValues>) => {
             fullWidth
             helperText={helperText}
           >
-            {ORDER_STATUS_FLOW.map((status,index) => (
+            {ORDER_STATUS_FLOW.map((status, index) => (
               <MenuItem key={index} value={status}>
                 {status}
               </MenuItem>
@@ -96,17 +96,18 @@ const Form = (props: FormikProps<FormikValues>) => {
       </Grid>
     </form>
   );
-}
+};
 
 export default function PageOrder() {
-  const {id} = useParams();
+  const { id } = useParams<{ id: string }>();
   const [order, setOrder] = useState<any>({});
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const onChangeStatus = (values: FormikValues) => {
-    return axios.put(`${API_PATHS.order}/order/${order.id}/status`, values)
-      .then(({data}) => setOrder(data));
+    return axios
+      .put(`${API_PATHS.order}/order/${order.id}/status`, values)
+      .then(({ data }) => setOrder(data));
   };
 
   useEffect(() => {
@@ -116,19 +117,18 @@ export default function PageOrder() {
     }
     const promises: any[] = [
       axios.get(`${API_PATHS.product}/product`),
-      axios.get(`${API_PATHS.order}/order/${id}`)
+      axios.get(`${API_PATHS.order}/order/${id}`),
     ];
-    Promise.all(promises)
-      .then(([{data: products}, {data: order}]) => {
-        const cartItems: CartItem[] = order.items.map((i: OrderItem) => ({
-          product: products.find((p: Product) => p.id === i.productId),
-          count: i.count
-        }));
-        setOrder(order);
-        setCartItems(cartItems);
-        setIsLoading(false);
-      });
-  }, [id])
+    Promise.all(promises).then(([{ data: products }, { data: order }]) => {
+      const cartItems: CartItem[] = order.items.map((i: OrderItem) => ({
+        product: products.find((p: Product) => p.id === i.productId),
+        count: i.count,
+      }));
+      setOrder(order);
+      setCartItems(cartItems);
+      setIsLoading(false);
+    });
+  }, [id]);
 
   if (isLoading) return <p>loading...</p>;
 
@@ -141,26 +141,20 @@ export default function PageOrder() {
       <Typography component="h1" variant="h4" align="center">
         Manage order
       </Typography>
-      <ReviewOrder address={order.address} items={cartItems}/>
-      <Typography variant="h6">
-        Status:
-      </Typography>
+      <ReviewOrder address={order.address} items={cartItems} />
+      <Typography variant="h6">Status:</Typography>
       <Typography variant="h6" color="primary">
         {lastStatusItem?.status.toUpperCase()}
       </Typography>
-      <Typography variant="h6">
-        Change status:
-      </Typography>
+      <Typography variant="h6">Change status:</Typography>
       <Formik
-        initialValues={{status: lastStatusItem.status, comment: ''}}
+        initialValues={{ status: lastStatusItem.status, comment: "" }}
         enableReinitialize
         onSubmit={onChangeStatus}
       >
         {(props: FormikProps<FormikValues>) => <Form {...props} />}
       </Formik>
-      <Typography variant="h6">
-        Status history:
-      </Typography>
+      <Typography variant="h6">Status history:</Typography>
       <TableContainer>
         <Table aria-label="simple table">
           <TableHead>
@@ -176,7 +170,9 @@ export default function PageOrder() {
                 <TableCell component="th" scope="row">
                   {statusHistoryItem.status.toUpperCase()}
                 </TableCell>
-                <TableCell align="right">{(new Date(statusHistoryItem.timestamp)).toString()}</TableCell>
+                <TableCell align="right">
+                  {new Date(statusHistoryItem.timestamp).toString()}
+                </TableCell>
                 <TableCell align="right">{statusHistoryItem.comment}</TableCell>
               </TableRow>
             ))}
