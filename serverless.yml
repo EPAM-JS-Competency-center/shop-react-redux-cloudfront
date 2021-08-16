@@ -1,12 +1,12 @@
-service: node-in-aws-web
+service: rss-app-cf-auto-test
 
 frameworkVersion: '2'
 
 provider:
   name: aws
   runtime: nodejs12.x
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  stage: dev
+  region: eu-west-1
 
 plugins:
   - serverless-finch
@@ -16,10 +16,12 @@ plugins:
   - serverless-single-page-app-plugin
 
 custom:
+
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: rss-app-cf-auto-test-bucket
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
+
 
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/

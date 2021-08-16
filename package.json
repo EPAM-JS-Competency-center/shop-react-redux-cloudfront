@@ -44,7 +44,7 @@
     "react-scripts": "3.4.1",
     "serverless": "^2.29.0",
     "serverless-finch": "^2.6.0",
-    "typescript": "~3.7.2",
+    "typescript": "~3.8.3",
     "yup": "^0.29.1"
   },
   "devDependencies": {

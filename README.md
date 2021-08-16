@@ -1,3 +1,19 @@
+## TASK2 data:
+###manual deploy s3
+[LINK](http://rss-app-first.s3-website-eu-west-1.amazonaws.com/)
+###manual deploy s3 + cf:
+[LINK](https://d1oivkh8ng4m9r.cloudfront.net/)
+
+
+###autodeploy s3:
+[LINK](http://rss-app-cf-auto-test-bucket.s3-website-eu-west-1.amazonaws.com/)
+###autodeploy s3+cf:
+[LINK](https://d1i9le8pr6alwh.cloudfront.net/)
+
+## END TASK2 INFORMATION
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
