@@ -1,0 +1,1 @@
+s3 link: http://pants-manual.s3-website-eu-west-1.amazonaws.com/
