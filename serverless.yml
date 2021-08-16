@@ -1,10 +1,11 @@
-service: node-in-aws-web
+service: node-in-aws-web-shop-service
 
 frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
+  region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -17,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: rs-e-commerce
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
