@@ -1,12 +1,14 @@
-service: node-in-aws-web
+# Welcome to Serverless!
+
+service: rs-app-serverless
 
 frameworkVersion: '2'
 
 provider:
   name: aws
   runtime: nodejs12.x
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: app-rs-user
+  region: eu-west-1
 
 plugins:
   - serverless-finch
@@ -17,12 +19,13 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: gtrsh-rs-app-auto-fe-deploy
     distributionFolder: build
-  s3BucketName: ${self:custom.client.bucketName}
-
+    indexDocument: index.html
+    manageResources: false
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
 
 resources:
   Resources:
@@ -69,6 +72,7 @@ resources:
       Properties:
         DistributionConfig:
           Origins:
+            ## - DomainName: ${self:custom.s3BucketName}.s3.amazonaws.com
             - DomainName: !GetAtt WebAppS3Bucket.RegionalDomainName
               ## An identifier for the origin which must be unique within the distribution
               Id: myS3Origin
@@ -123,6 +127,8 @@ resources:
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
     WebAppS3BucketOutput:
-      Value: !Ref WebAppS3Bucket
+      Value:
+        'Ref': WebAppS3Bucket
     WebAppCloudFrontDistributionOutput:
-      Value: !GetAtt WebAppCloudFrontDistribution.DomainName
+      Value:
+        'Fn::GetAtt': [ WebAppCloudFrontDistribution, DomainName ]
