@@ -8,6 +8,7 @@ provider:
   # setup profile for AWS CLI.
   # profile: node-aws
   profile: default
+  regin: eu-west-1
 
 plugins:
   - serverless-finch
