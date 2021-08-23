@@ -1,10 +1,11 @@
-service: node-in-aws-web
+service: aws-rs-task2-auto
 
 frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
+  region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -17,12 +18,12 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: aws-rs-task2-auto
     distributionFolder: build
-  s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
 
 resources:
   Resources:
@@ -38,7 +39,7 @@ resources:
         # VersioningConfiguration:
         #   Status: Enabled
 
-    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
+    ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
     WebAppS3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
