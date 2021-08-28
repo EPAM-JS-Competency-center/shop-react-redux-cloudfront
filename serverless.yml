@@ -17,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: rs-school-aws-course-2021-task-2-dehoko-automated
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -38,7 +38,7 @@ resources:
         # VersioningConfiguration:
         #   Status: Enabled
 
-    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
+    ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
     WebAppS3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:

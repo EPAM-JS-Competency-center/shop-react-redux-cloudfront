@@ -43,10 +43,10 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar position="relative" style={{ background: '#15bc34' }}>
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <Link className={classes.homeLink} to="/">My Store!</Link>
+          <Link className={classes.homeLink} to="/">Dehoko's Bows Store</Link>
         </Typography>
 
         {auth && (
