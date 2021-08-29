@@ -9,9 +9,9 @@ import {makeStyles} from '@material-ui/core/styles';
 import {Product} from "models/Product";
 import {formatAsPrice} from "utils/utils";
 import AddProductToCart from "components/AddProductToCart/AddProductToCart";
-// import axios from 'axios';
+import axios from 'axios';
 // import API_PATHS from "constants/apiPaths";
-import productList from "./productList.json";
+// import productList from "./productList.json";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -38,7 +38,9 @@ export default function Products() {
   useEffect(() => {
     // axios.get(`${API_PATHS.bff}/product/available/`)
     //   .then(res => setProducts(res.data));
-    setProducts(productList);
+    // setProducts(productList);
+    axios.get('https://bxz7pu29qg.execute-api.eu-west-1.amazonaws.com/prod/products')
+      .then(res => setProducts(res.data.products!));
   }, [])
 
   return (
@@ -48,7 +50,7 @@ export default function Products() {
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image={`https://source.unsplash.com/random?sig=${index}`}
+              image={product.imageUrl}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
