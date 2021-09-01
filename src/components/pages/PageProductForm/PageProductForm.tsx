@@ -118,9 +118,9 @@ export default function PageProductForm() {
       setIsLoading(false);
       return;
     }
-    axios.get(`${API_PATHS.bff}/product/${id}`)
+    axios.get(API_PATHS.product, { params: { id }})
       .then(res => {
-        setProduct(res.data);
+        setProduct(res.data.product);
         setIsLoading(false);
       });
   }, [id])
