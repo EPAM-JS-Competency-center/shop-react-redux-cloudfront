@@ -97,10 +97,10 @@ const Form = (props: FormikProps<FormikValues>) => {
 const emptyValues: any = ProductSchema.cast();
 
 export default function PageProductForm() {
-	const history = useHistory();
-	const { id } = useParams<{ id: string }>();
-	const [product, setProduct] = useState<Product | null>(null);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+  const history = useHistory();
+  const {id} = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const onSubmit = (values: FormikValues) => {
 		const formattedValues = ProductSchema.cast(values);
@@ -125,18 +125,18 @@ export default function PageProductForm() {
 
 	if (isLoading) return <p>loading...</p>;
 
-	return (
-		<PaperLayout>
-			<Typography component="h1" variant="h4" align="center">
-				{id ? "Edit product" : "Create new product"}
-			</Typography>
-			<Formik
-				initialValues={product || emptyValues}
-				validationSchema={ProductSchema}
-				onSubmit={onSubmit}
-			>
-				{(props: FormikProps<FormikValues>) => <Form {...props} />}
-			</Formik>
-		</PaperLayout>
-	);
+  return (
+    <PaperLayout>
+      <Typography component="h1" variant="h4" align="center">
+        {id ? 'Edit product' : 'Create new product'}
+      </Typography>
+      <Formik
+        initialValues={product || emptyValues}
+        validationSchema={ProductSchema}
+        onSubmit={onSubmit}
+      >
+        {(props: FormikProps<FormikValues>) => <Form {...props} />}
+      </Formik>
+    </PaperLayout>
+  );
 }
