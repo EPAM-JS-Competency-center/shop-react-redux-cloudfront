@@ -38,7 +38,7 @@ export default function Products() {
 	useEffect(() => {
 		axios
 			.get(`${API_PATHS.bff}/products`)
-			.then((res) => setProducts(res.data.body.data));
+			.then((res) => setProducts(res.data.data));
 		// setProducts(productList);
 	}, []);
 	// console.log(products);
