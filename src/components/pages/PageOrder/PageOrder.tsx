@@ -100,10 +100,10 @@ const Form = (props: FormikProps<FormikValues>) => {
 };
 
 export default function PageOrder() {
-	const { id } = useParams<{ id: string }>();
-	const [order, setOrder] = useState<any>({});
-	const [cartItems, setCartItems] = useState<CartItem[]>([]);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+  const {id} = useParams<{ id: string }>();
+  const [order, setOrder] = useState<any>({});
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const onChangeStatus = (values: FormikValues) => {
 		return axios
@@ -137,49 +137,53 @@ export default function PageOrder() {
 
 	const lastStatusItem = statusHistory[statusHistory.length - 1];
 
-	return (
-		<PaperLayout>
-			<Typography component="h1" variant="h4" align="center">
-				Manage order
-			</Typography>
-			<ReviewOrder address={order.address} items={cartItems} />
-			<Typography variant="h6">Status:</Typography>
-			<Typography variant="h6" color="primary">
-				{lastStatusItem?.status.toUpperCase()}
-			</Typography>
-			<Typography variant="h6">Change status:</Typography>
-			<Formik
-				initialValues={{ status: lastStatusItem.status, comment: "" }}
-				enableReinitialize
-				onSubmit={onChangeStatus}
-			>
-				{(props: FormikProps<FormikValues>) => <Form {...props} />}
-			</Formik>
-			<Typography variant="h6">Status history:</Typography>
-			<TableContainer>
-				<Table aria-label="simple table">
-					<TableHead>
-						<TableRow>
-							<TableCell>Status</TableCell>
-							<TableCell align="right">Date and Time</TableCell>
-							<TableCell align="right">Comment</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{statusHistory.map((statusHistoryItem: any) => (
-							<TableRow key={order.id}>
-								<TableCell component="th" scope="row">
-									{statusHistoryItem.status.toUpperCase()}
-								</TableCell>
-								<TableCell align="right">
-									{new Date(statusHistoryItem.timestamp).toString()}
-								</TableCell>
-								<TableCell align="right">{statusHistoryItem.comment}</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
-		</PaperLayout>
-	);
+  return (
+    <PaperLayout>
+      <Typography component="h1" variant="h4" align="center">
+        Manage order
+      </Typography>
+      <ReviewOrder address={order.address} items={cartItems}/>
+      <Typography variant="h6">
+        Status:
+      </Typography>
+      <Typography variant="h6" color="primary">
+        {lastStatusItem?.status.toUpperCase()}
+      </Typography>
+      <Typography variant="h6">
+        Change status:
+      </Typography>
+      <Formik
+        initialValues={{status: lastStatusItem.status, comment: ''}}
+        enableReinitialize
+        onSubmit={onChangeStatus}
+      >
+        {(props: FormikProps<FormikValues>) => <Form {...props} />}
+      </Formik>
+      <Typography variant="h6">
+        Status history:
+      </Typography>
+      <TableContainer>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Status</TableCell>
+              <TableCell align="right">Date and Time</TableCell>
+              <TableCell align="right">Comment</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {statusHistory.map((statusHistoryItem: any) => (
+              <TableRow key={order.id}>
+                <TableCell component="th" scope="row">
+                  {statusHistoryItem.status.toUpperCase()}
+                </TableCell>
+                <TableCell align="right">{(new Date(statusHistoryItem.timestamp)).toString()}</TableCell>
+                <TableCell align="right">{statusHistoryItem.comment}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </PaperLayout>
+  );
 }
