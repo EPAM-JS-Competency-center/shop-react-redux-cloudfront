@@ -42,19 +42,20 @@ export default function Products() {
 
   return (
     <Grid container spacing={4}>
-      {products.map((product: Product, index: number) => (
+      {products.map((product: Product) => (
         <Grid item key={product.id} xs={12} sm={6} md={4}>
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image={`https://source.unsplash.com/random?sig=${index}`}
-              title='Image title'
+              image={`${product.image}`}
+              title='Cute socks'
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant='h5' component='h2'>
                 {product.title}
               </Typography>
               <Typography>{formatAsPrice(product.price)}</Typography>
+              <Typography>Count: ${product.count}</Typography>
             </CardContent>
             <CardActions>
               <AddProductToCart product={product} />
