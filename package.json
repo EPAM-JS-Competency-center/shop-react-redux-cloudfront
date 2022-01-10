@@ -42,10 +42,11 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "serverless": "^2.29.0",
-    "serverless-finch": "^2.6.0",
+    "serverless": "^2.68.0",
+    "serverless-finch": "^2.7.6",
     "typescript": "~4.3.5",
-    "yup": "^0.29.1"
+    "yup": "^0.29.1",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
