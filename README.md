@@ -1,3 +1,9 @@
+Direct link for s3 bucket:
+http://my-first-app-react-2.s3-website-us-east-1.amazonaws.com/ (Should be 403 error)
+Link to Cloudfront:
+https://d30a10x0kit4gv.cloudfront.net/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
