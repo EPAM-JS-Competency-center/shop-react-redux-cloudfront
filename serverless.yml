@@ -18,7 +18,6 @@ custom:
     distributionFolder: build
     indexDocument: index.html
     errorDocument: index.html
-
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
   s3BucketName: ${self:custom.client.bucketName}
