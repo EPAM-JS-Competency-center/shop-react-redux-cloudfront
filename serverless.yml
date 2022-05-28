@@ -1,12 +1,13 @@
 service: node-in-aws-web
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs12.x
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: gena888
+  region: eu-west-1
 
 plugins:
   - serverless-finch
@@ -17,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: gena888-second-bucket-fe
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
