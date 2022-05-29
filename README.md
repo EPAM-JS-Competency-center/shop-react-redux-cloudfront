@@ -1,3 +1,7 @@
+S3 bucket website: http://my-shop-rs-bucket.s3-website-us-east-1.amazonaws.com/
+
+CloudFront url: https://d2trn1mtsigbrj.cloudfront.net/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
