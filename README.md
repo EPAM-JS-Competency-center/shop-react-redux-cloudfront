@@ -43,3 +43,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Task 2: Serve SPA in AWS S3 and Cloudfront Services
+
+Cloudront URL: https://dkg3n1e6rpay2.cloudfront.net/
+
+S3 WebSite: http://rs-nodejs-aws-2.s3-website-us-east-1.amazonaws.com
