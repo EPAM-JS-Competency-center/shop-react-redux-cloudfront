@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 In the project directory, you can run:  
 You can use NPM instead of YARN (Up to you)  
 
-### `yarn start` OR `npm run start`
+### `yarn start` OR `npm run start`; If npm is v7+: `npm run start --legacy-peer-deps`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -43,3 +43,30 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Crosscheck Information
+
+**Task 2.1 Manual deployment** is implemented. 
+
+Details: 
+  - Created an S3 bucket. Checked with uploaded minor changes.
+  - Created a CloudFront distribution. Checked with uploaded minor changes.
+
+**Task 2.2 Automated deployment** is implemented.
+
+Details:
+  - Configured `serverless` and `serverless-finch` plugin, added proper npm scripts.
+  - Destroyed the AWS infrastructure from the Task 2.1.
+  - Configured `serverless-single-page-app-plugin`, added necessary NPM scripts:
+    - to upload to the S3 bucket
+    - to invalidate CloudFront cache
+  - Checked that everything works correctly and all changes appear on the Web.
+
+**Task 2.3 Save the work** is implemented.
+
+Details:
+  - Committed to `task-2` branch and created a pull request.
+  - Links for crosscheck:
+    - [Automatically created S3 bucket](http://varachai-s3-1.s3-website-us-east-1.amazonaws.com/) - displays `403 Forbidden`
+    - [Website with minor changes](https://ddnwm4rx95lo1.cloudfront.net/) - shows the updated website.
+

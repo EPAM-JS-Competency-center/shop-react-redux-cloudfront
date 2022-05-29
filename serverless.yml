@@ -4,9 +4,9 @@ frameworkVersion: '2'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: epam-admin2
 
 plugins:
   - serverless-finch
@@ -17,11 +17,13 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: varachai-s3-static-fe
     distributionFolder: build
-  s3BucketName: ${self:custom.client.bucketName}
+    indexDocument: index.html
+    errorDocument: index.html
 
   ## Serverless-single-page-app-plugin configuration:
+  s3BucketName: ${self:custom.client.bucketName}
   s3LocalPath: ${self:custom.client.distributionFolder}/
 
 resources:
