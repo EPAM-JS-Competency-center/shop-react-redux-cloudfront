@@ -1,3 +1,9 @@
+.   
+## CloudFront URL - https://d2d5yrgw9jop59.cloudfront.net
+
+## S3-website - http://gena888-second-bucket-fe.s3-website-eu-west-1.amazonaws.com/
+.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
