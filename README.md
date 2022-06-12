@@ -1,3 +1,9 @@
+**Cloudfront URL:** https://danm65k4r2hb6.cloudfront.net/
+
+**S3 Bucket website:** http://fashionable-shop.s3-website-eu-west-1.amazonaws.com/
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

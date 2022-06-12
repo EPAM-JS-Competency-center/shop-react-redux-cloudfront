@@ -1,28 +1,26 @@
-service: node-in-aws-web
+service: fashionable-shop
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs12.x
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  region: eu-west-1
 
 plugins:
   - serverless-finch
-  # 'serverless-single-page-app-plugin' is a custom plugin that located .serverless_plugins folder.
-  # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
-  # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
 
 custom:
+  ## Serverless-finch configuration
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: fashionable-shop
     distributionFolder: build
-  s3BucketName: ${self:custom.client.bucketName}
-
+    indexDocument: index.html
+    manageResources: false
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
 
 resources:
   Resources:
@@ -119,8 +117,7 @@ resources:
           #   IncludeCookies: 'false'
           #   Bucket: mylogs.s3.amazonaws.com
           #   Prefix: myprefix
-
-  ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
+          ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
     WebAppS3BucketOutput:
       Value: !Ref WebAppS3Bucket

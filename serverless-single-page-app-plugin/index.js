@@ -9,30 +9,23 @@ class ServerlessPlugin {
     this.commands = {
       syncToS3: {
         usage: 'Deploys the `app` directory to your bucket',
-        lifecycleEvents: [
-          'sync',
-        ],
+        lifecycleEvents: ['sync'],
       },
       domainInfo: {
         usage: 'Fetches and prints out the deployed CloudFront domain names',
-        lifecycleEvents: [
-          'domainInfo',
-        ],
+        lifecycleEvents: ['domainInfo'],
       },
       invalidateCloudFrontCache: {
         usage: 'Invalidates CloudFront cache',
-        lifecycleEvents: [
-          'invalidateCache',
-        ],
+        lifecycleEvents: ['invalidateCache'],
       },
     };
 
     this.hooks = {
       'syncToS3:sync': this.syncDirectory.bind(this),
       'domainInfo:domainInfo': this.domainInfo.bind(this),
-      'invalidateCloudFrontCache:invalidateCache': this.invalidateCache.bind(
-        this,
-      ),
+      'invalidateCloudFrontCache:invalidateCache':
+        this.invalidateCache.bind(this),
     };
   }
 
@@ -44,9 +37,16 @@ class ServerlessPlugin {
     if (this.serverless.variables.service.provider.profile) {
       command = `${command} --profile ${this.serverless.variables.service.provider.profile}`;
     }
-    const result = spawnSync(command, args, { shell: true });
-    const stdout = result.stdout.toString();
-    const sterr = result.stderr.toString();
+    const result = spawnSync(command, args);
+
+    const stdout =
+      typeof result.stdout === 'string'
+        ? result.stdout
+        : result.stdout && result.stdout.toString();
+    const sterr =
+      typeof result.stderr === 'string'
+        ? result.stderr
+        : result.stderr && result.stderr.toString();
     if (stdout) {
       this.serverless.cli.log(stdout);
     }
@@ -60,14 +60,7 @@ class ServerlessPlugin {
   // syncs the `app` directory to the provided bucket
   syncDirectory() {
     const s3Bucket = this.serverless.variables.service.custom.s3Bucket;
-    const buildFolder = this.serverless.variables.service.custom.client.distributionFolder;
-    const args = [
-      's3',
-      'sync',
-      `${buildFolder}/`,
-      `s3://${s3Bucket}/`,
-      '--delete',
-    ];
+    const args = ['s3', 'sync', 'app/', `s3://${s3Bucket}/`, '--delete'];
     const { sterr } = this.runAwsCommand(args);
     if (!sterr) {
       this.serverless.cli.log('Successfully synced to the S3 bucket');
@@ -85,12 +78,12 @@ class ServerlessPlugin {
       'describeStacks',
       { StackName: stackName },
       this.options.stage,
-      this.options.region,
+      this.options.region
     );
 
     const outputs = result.Stacks[0].Outputs;
     const output = outputs.find(
-      entry => entry.OutputKey === 'WebAppCloudFrontDistributionOutput',
+      (entry) => entry.OutputKey === 'WebAppCloudFrontDistributionOutput'
     );
 
     if (output && output.OutputValue) {
@@ -113,17 +106,17 @@ class ServerlessPlugin {
       'listDistributions',
       {},
       this.options.stage,
-      this.options.region,
+      this.options.region
     );
 
     const distributions = result.DistributionList.Items;
     const distribution = distributions.find(
-      entry => entry.DomainName === domain,
+      (entry) => entry.DomainName === domain
     );
 
     if (distribution) {
       this.serverless.cli.log(
-        `Invalidating CloudFront distribution with id: ${distribution.Id}`,
+        `Invalidating CloudFront distribution with id: ${distribution.Id}`
       );
       const args = [
         'cloudfront',
@@ -131,7 +124,7 @@ class ServerlessPlugin {
         '--distribution-id',
         distribution.Id,
         '--paths',
-        '"/*"',
+        '/*',
       ];
       const { sterr } = this.runAwsCommand(args);
       if (!sterr) {
