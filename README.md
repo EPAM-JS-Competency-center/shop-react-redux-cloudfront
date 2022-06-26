@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:  
-You can use NPM instead of YARN (Up to you)  
+You can use NPM instead of YARN (Up to you)
 
 ### `yarn start` OR `npm run start`
 
@@ -43,3 +43,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Task-2 Links
+
+Link to S3-website (shows 403 Access Denied error): http://pankleks-bucket-task2-solution.s3-website-eu-west-1.amazonaws.com/
+
+Link to CloudFront website: https://d2hjzy96yvvgr3.cloudfront.net/
