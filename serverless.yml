@@ -17,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: mrinal-js-cloudx-web-bucket
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 

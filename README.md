@@ -1,3 +1,7 @@
+## Task 1
+Serverless: Web App Domain: d1aowqolglm4oe.cloudfront.net
+S3 website: http://mrinal-js-cloudx-web-bucket.s3-website-us-east-1.amazonaws.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

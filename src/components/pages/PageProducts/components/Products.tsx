@@ -49,10 +49,10 @@ export default function Products() {
             <CardMedia
               className={classes.cardMedia}
               image={`https://source.unsplash.com/random?sig=${index}`}
-              title="Image title"
+              title="Product Title"
             />
             <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant="h4" component="h3">
                 {product.title}
               </Typography>
               <Typography>
