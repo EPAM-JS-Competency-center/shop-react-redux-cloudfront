@@ -59,6 +59,7 @@ const renderForm = () => (
     </Typography>
     <Grid container spacing={2}>
       <Grid item xs={12} sm={6}>
+        {/*@ts-ignore*/}
         <FastField
           component={TextField}
           name="lastName"
@@ -69,6 +70,7 @@ const renderForm = () => (
         />
       </Grid>
       <Grid item xs={12} sm={6}>
+        {/*@ts-ignore*/}
         <FastField
           component={TextField}
           name="firstName"
@@ -79,6 +81,7 @@ const renderForm = () => (
         />
       </Grid>
       <Grid item xs={12}>
+        {/*@ts-ignore*/}
         <FastField
           component={TextField}
           name="address"
@@ -89,6 +92,7 @@ const renderForm = () => (
         />
       </Grid>
       <Grid item xs={12}>
+        {/*@ts-ignore*/}
         <FastField
           component={TextField}
           name="comment"
