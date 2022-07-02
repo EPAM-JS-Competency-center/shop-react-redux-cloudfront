@@ -173,7 +173,7 @@ export default function PageOrder() {
           <TableBody>
             {statusHistory.map((statusHistoryItem: any) => (
               <TableRow key={order.id}>
-                <TableCell component="th" scope="row">
+                <TableCell scope="row">
                   {statusHistoryItem.status.toUpperCase()}
                 </TableCell>
                 <TableCell align="right">{(new Date(statusHistoryItem.timestamp)).toString()}</TableCell>
