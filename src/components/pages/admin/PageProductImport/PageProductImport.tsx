@@ -1,11 +1,11 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import API_PATHS from "constants/apiPaths";
-import ProductsTable from "components/pages/admin/PageProductImport/components/ProductsTable";
-import CSVFileImport from "components/pages/admin/PageProductImport/components/CSVFileImport";
-import Button from "@material-ui/core/Button";
-import Box from "@material-ui/core/Box";
-import {Link} from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import API_PATHS from 'constants/apiPaths';
+import ProductsTable from 'components/pages/admin/PageProductImport/components/ProductsTable';
+import CSVFileImport from 'components/pages/admin/PageProductImport/components/CSVFileImport';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -18,13 +18,22 @@ export default function PageProductImport() {
 
   return (
     <div className={classes.content}>
-      <Box display="flex" alignItems="center">
-        <CSVFileImport url={`${API_PATHS.import}/import`} title="Import Products CSV"/>
-        <Button size="small" color="primary" variant="contained" component={Link} to={'/admin/product-form/'}>
+      <Box display='flex' alignItems='center'>
+        <CSVFileImport
+          url={`${API_PATHS.import}`}
+          title='Import Products CSV'
+        />
+        <Button
+          size='small'
+          color='primary'
+          variant='contained'
+          component={Link}
+          to={'/admin/product-form/'}
+        >
           create product
         </Button>
       </Box>
-      <ProductsTable/>
+      <ProductsTable />
     </div>
   );
 }
