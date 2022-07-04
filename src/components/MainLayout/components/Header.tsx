@@ -1,14 +1,15 @@
-import React from 'react';
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 import Cart from "components/MainLayout/components/Cart";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { APP_NAME } from "constants/app";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,10 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     homeLink: {
-      color: 'white',
-      textDecoration: 'none'
-    }
-  }),
+      color: "white",
+      textDecoration: "none",
+    },
+  })
 );
 
 export default function Header() {
@@ -46,7 +47,9 @@ export default function Header() {
     <AppBar position="relative">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <Link className={classes.homeLink} to="/">My Store!</Link>
+          <Link className={classes.homeLink} to="/">
+            {APP_NAME}
+          </Link>
         </Typography>
 
         {auth && (
@@ -58,29 +61,41 @@ export default function Header() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle/>
+              <AccountCircle />
             </IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={open}
               onClose={handleClose}
             >
-              <MenuItem component={Link} to="/admin/orders" onClick={handleClose}>Manage orders</MenuItem>
-              <MenuItem component={Link} to="/admin/products" onClick={handleClose}>Manage products</MenuItem>
+              <MenuItem
+                component={Link}
+                to="/admin/orders"
+                onClick={handleClose}
+              >
+                Manage orders
+              </MenuItem>
+              <MenuItem
+                component={Link}
+                to="/admin/products"
+                onClick={handleClose}
+              >
+                Manage products
+              </MenuItem>
             </Menu>
           </div>
         )}
-        <Cart/>
+        <Cart />
       </Toolbar>
     </AppBar>
   );
