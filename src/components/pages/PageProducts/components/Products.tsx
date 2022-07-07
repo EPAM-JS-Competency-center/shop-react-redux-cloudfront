@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
-import {Product} from "models/Product";
-import {formatAsPrice} from "utils/utils";
-import AddProductToCart from "components/AddProductToCart/AddProductToCart";
+import { makeStyles } from '@material-ui/core/styles';
+import { Product } from 'models/Product';
+import { formatAsPrice } from 'utils/utils';
+import AddProductToCart from 'components/AddProductToCart/AddProductToCart';
 // import axios from 'axios';
 // import API_PATHS from "constants/apiPaths";
-import productList from "./productList.json";
+import productList from './productList.json';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardContent: {
     flexGrow: 1,
+    color: '#3f51b5',
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -39,7 +40,7 @@ export default function Products() {
     // axios.get(`${API_PATHS.bff}/product/available/`)
     //   .then(res => setProducts(res.data));
     setProducts(productList);
-  }, [])
+  }, []);
 
   return (
     <Grid container spacing={4}>
@@ -49,18 +50,16 @@ export default function Products() {
             <CardMedia
               className={classes.cardMedia}
               image={`https://source.unsplash.com/random?sig=${index}`}
-              title="Image title"
+              title='Image title'
             />
             <CardContent className={classes.cardContent}>
-              <Typography gutterBottom variant="h5" component="h2">
+              <Typography gutterBottom variant='h5' component='h2'>
                 {product.title}
               </Typography>
-              <Typography>
-                {formatAsPrice(product.price)}
-              </Typography>
+              <Typography>{formatAsPrice(product.price)}</Typography>
             </CardContent>
             <CardActions>
-              <AddProductToCart product={product}/>
+              <AddProductToCart product={product} />
             </CardActions>
           </Card>
         </Grid>
