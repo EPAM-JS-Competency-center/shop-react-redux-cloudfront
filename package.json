@@ -16,6 +16,7 @@
     "cloudfront:build:deploy:nc": "npm run client:build:deploy:nc && npm run cloudfront:invalidateCache",
     "cloudfront:update:build:deploy": "npm run cloudfront:setup && npm run cloudfront:build:deploy",
     "cloudfront:update:build:deploy:nc": "npm run cloudfront:setup && npm run cloudfront:build:deploy:nc",
+    "cloudfront:remove": "sls remove",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,8 +43,8 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "serverless": "^2.29.0",
-    "serverless-finch": "^2.6.0",
+    "serverless": "^3.19.0",
+    "serverless-finch": "^4.0.0",
     "typescript": "~4.3.5",
     "yup": "^0.29.1"
   },
