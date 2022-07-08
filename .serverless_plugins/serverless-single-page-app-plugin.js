@@ -31,7 +31,7 @@ class ServerlessPlugin {
       'syncToS3:sync': this.syncDirectory.bind(this),
       'domainInfo:domainInfo': this.domainInfo.bind(this),
       'invalidateCloudFrontCache:invalidateCache': this.invalidateCache.bind(
-        this,
+          this,
       ),
     };
   }
@@ -44,9 +44,10 @@ class ServerlessPlugin {
     if (this.serverless.variables.service.provider.profile) {
       command = `${command} --profile ${this.serverless.variables.service.provider.profile}`;
     }
-    const result = spawnSync(command, args, { shell: true });
-    const stdout = result.stdout.toString();
-    const sterr = result.stderr.toString();
+    const result = spawnSync(command, args);
+
+    const stdout = typeof result.stdout === 'string' ? result.stdout : result.stdout && result.stdout.toString() ;
+    const sterr = typeof result.stderr === 'string' ? result.stderr : result.stderr && result.stderr.toString();
     if (stdout) {
       this.serverless.cli.log(stdout);
     }
@@ -60,11 +61,10 @@ class ServerlessPlugin {
   // syncs the `app` directory to the provided bucket
   syncDirectory() {
     const s3Bucket = this.serverless.variables.service.custom.s3Bucket;
-    const buildFolder = this.serverless.variables.service.custom.client.distributionFolder;
     const args = [
       's3',
       'sync',
-      `${buildFolder}/`,
+      'build/',
       `s3://${s3Bucket}/`,
       '--delete',
     ];
@@ -81,16 +81,16 @@ class ServerlessPlugin {
     const provider = this.serverless.getProvider('aws');
     const stackName = provider.naming.getStackName(this.options.stage);
     const result = await provider.request(
-      'CloudFormation',
-      'describeStacks',
-      { StackName: stackName },
-      this.options.stage,
-      this.options.region,
+        'CloudFormation',
+        'describeStacks',
+        { StackName: stackName },
+        this.options.stage,
+        this.options.region,
     );
 
     const outputs = result.Stacks[0].Outputs;
     const output = outputs.find(
-      entry => entry.OutputKey === 'WebAppCloudFrontDistributionOutput',
+        entry => entry.OutputKey === 'WebAppCloudFrontDistributionOutput',
     );
 
     if (output && output.OutputValue) {
@@ -109,21 +109,21 @@ class ServerlessPlugin {
     const domain = await this.domainInfo();
 
     const result = await provider.request(
-      'CloudFront',
-      'listDistributions',
-      {},
-      this.options.stage,
-      this.options.region,
+        'CloudFront',
+        'listDistributions',
+        {},
+        this.options.stage,
+        this.options.region,
     );
 
     const distributions = result.DistributionList.Items;
     const distribution = distributions.find(
-      entry => entry.DomainName === domain,
+        entry => entry.DomainName === domain,
     );
 
     if (distribution) {
       this.serverless.cli.log(
-        `Invalidating CloudFront distribution with id: ${distribution.Id}`,
+          `Invalidating CloudFront distribution with id: ${distribution.Id}`,
       );
       const args = [
         'cloudfront',
@@ -131,7 +131,7 @@ class ServerlessPlugin {
         '--distribution-id',
         distribution.Id,
         '--paths',
-        '"/*"',
+        '/*',
       ];
       const { sterr } = this.runAwsCommand(args);
       if (!sterr) {
