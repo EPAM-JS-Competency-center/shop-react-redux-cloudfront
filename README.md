@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## URL - Shop
+s3: http://epam-shopcart.s3-website-us-east-1.amazonaws.com/ <br />
+CloudFront: https://d1w2o2zcze5142.cloudfront.net/
+
 ## Available Scripts
 
 In the project directory, you can run:  
