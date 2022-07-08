@@ -1,12 +1,12 @@
-service: node-in-aws-web
+service: shop-mlr-app
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs12.x
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: admin
 
 plugins:
   - serverless-finch
@@ -17,8 +17,9 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: shop-mlr-app
     distributionFolder: build
+    indexDocument: index.html
   s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
