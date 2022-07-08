@@ -43,8 +43,8 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="relative">
-      <Toolbar>
+    <AppBar position="relative" style={{color: 'black'}}>
+      <Toolbar style={{backgroundColor: 'red'}}>
         <Typography variant="h6" className={classes.title}>
           <Link className={classes.homeLink} to="/">My Store!</Link>
         </Typography>

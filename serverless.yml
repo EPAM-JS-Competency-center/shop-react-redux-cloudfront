@@ -1,6 +1,8 @@
-service: node-in-aws-web
+org: tapion
+app: my-test
+service: my-test
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
@@ -17,12 +19,13 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: cludappfirst
     distributionFolder: build
-  s3BucketName: ${self:custom.client.bucketName}
-
+    indexDocument: index.html
+    manageResources: false
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
 
 resources:
   Resources:
@@ -123,6 +126,8 @@ resources:
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
     WebAppS3BucketOutput:
-      Value: !Ref WebAppS3Bucket
+      Value:
+        'Ref': WebAppS3Bucket
     WebAppCloudFrontDistributionOutput:
-      Value: !GetAtt WebAppCloudFrontDistribution.DomainName
+      Value:
+        'Fn::GetAtt': [ WebAppCloudFrontDistribution, DomainName ]
