@@ -31,7 +31,7 @@ class ServerlessPlugin {
       'syncToS3:sync': this.syncDirectory.bind(this),
       'domainInfo:domainInfo': this.domainInfo.bind(this),
       'invalidateCloudFrontCache:invalidateCache': this.invalidateCache.bind(
-        this,
+          this,
       ),
     };
   }
@@ -44,9 +44,10 @@ class ServerlessPlugin {
     if (this.serverless.variables.service.provider.profile) {
       command = `${command} --profile ${this.serverless.variables.service.provider.profile}`;
     }
-    const result = spawnSync(command, args, { shell: true });
-    const stdout = result.stdout.toString();
-    const sterr = result.stderr.toString();
+    const result = spawnSync(command, args);
+
+    const stdout = typeof result.stdout === 'string' ? result.stdout : result.stdout && result.stdout.toString() ;
+    const sterr = typeof result.stderr === 'string' ? result.stderr : result.stderr && result.stderr.toString();
     if (stdout) {
       this.serverless.cli.log(stdout);
     }
@@ -131,7 +132,7 @@ class ServerlessPlugin {
         '--distribution-id',
         distribution.Id,
         '--paths',
-        '"/*"',
+        '/*',
       ];
       const { sterr } = this.runAwsCommand(args);
       if (!sterr) {
