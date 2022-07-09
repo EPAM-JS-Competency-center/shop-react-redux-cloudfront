@@ -1,16 +1,16 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
-import Container from "@material-ui/core/Container";
-import Header from "components/MainLayout/components/Header";
+import Container from '@material-ui/core/Container';
+import Header from 'components/MainLayout/components/Header';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        My Store
+        Pic app
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainLayout: React.FC = ({children}) => {
+const MainLayout: React.FC = ({ children }) => {
   const classes = useStyles();
 
   return (
     <>
-      <Header/>
+      <Header />
       <main>
         <Container className={classes.container} maxWidth="md">
           {children!}
@@ -43,7 +43,7 @@ const MainLayout: React.FC = ({children}) => {
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
           Thank you for your purchase!
         </Typography>
-        <Copyright/>
+        <Copyright />
       </footer>
     </>
   );
