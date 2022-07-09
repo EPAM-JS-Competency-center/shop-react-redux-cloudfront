@@ -1,6 +1,6 @@
-service: node-in-aws-web
+service: cloudx-shop-react-redux-cloudfront
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
@@ -17,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: cloudx-shop-react-redux-cloudfront
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 

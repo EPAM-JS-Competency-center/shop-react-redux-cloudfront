@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountBox from '@material-ui/icons/AccountBox';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Cart from "components/MainLayout/components/Cart";
@@ -46,7 +46,7 @@ export default function Header() {
     <AppBar position="relative">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <Link className={classes.homeLink} to="/">My Store!</Link>
+          <Link className={classes.homeLink} to="/">Dashing Dreamers</Link>
         </Typography>
 
         {auth && (
@@ -58,7 +58,7 @@ export default function Header() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle/>
+              <AccountBox/>
             </IconButton>
             <Menu
               id="menu-appbar"
