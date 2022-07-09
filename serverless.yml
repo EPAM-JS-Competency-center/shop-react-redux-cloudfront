@@ -1,4 +1,4 @@
-service: node-in-aws-web
+service: shop-react-redux-cloudfront-demo
 
 frameworkVersion: '2'
 
@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: default
 
 plugins:
   - serverless-finch
@@ -17,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: shop-react-redux-cloudfront-demo-bucket
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 

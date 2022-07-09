@@ -43,3 +43,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Links
+[S3 bucket](http://shop-react-redux-cloudfront-demo-bucket.s3-website-us-east-1.amazonaws.com)
+[CloudFront](http://da51dt79ggcrn.cloudfront.net/)
