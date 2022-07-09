@@ -25,3 +25,8 @@ yarn-error.log*
 
 /.idea
 .vscode
+
+jspm_packages
+
+# Serverless directories
+.serverless

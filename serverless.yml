@@ -1,10 +1,11 @@
-service: node-in-aws-web
+service: s9-store
 
-frameworkVersion: '2'
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs12.x
+  region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -17,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: s9-store-bucket
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -69,7 +70,7 @@ resources:
       Properties:
         DistributionConfig:
           Origins:
-            - DomainName: !GetAtt WebAppS3Bucket.RegionalDomainName
+            - DomainName: ${self:custom.s3BucketName}.s3.amazonaws.com
               ## An identifier for the origin which must be unique within the distribution
               Id: myS3Origin
               ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig
