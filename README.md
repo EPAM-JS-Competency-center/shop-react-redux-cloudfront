@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Link for the original static web-site http://shop-react-homework.s3-website-us-west-2.amazonaws.com/ - 
+Not able to provide a cloudFront link here because I've got a not verified account. So that will be done later. 
+
 ## Available Scripts
 
 In the project directory, you can run:  
