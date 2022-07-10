@@ -10,6 +10,7 @@
     "client:build:deploy": "npm run build && npm run client:deploy",
     "client:build:deploy:nc": "npm run build && npm run client:deploy:nc",
     "cloudfront:setup": "sls deploy",
+    "remove": "sls remove",
     "cloudfront:domainInfo": "sls domainInfo",
     "cloudfront:invalidateCache": "sls invalidateCloudFrontCache",
     "cloudfront:build:deploy": "npm run client:build:deploy && npm run cloudfront:invalidateCache",
