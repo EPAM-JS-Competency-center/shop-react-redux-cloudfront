@@ -9,7 +9,7 @@
     "client:deploy:nc": "npm run client:deploy -- --no-confirm",
     "client:build:deploy": "npm run build && npm run client:deploy",
     "client:build:deploy:nc": "npm run build && npm run client:deploy:nc",
-    "cloudfront:setup": "sls deploy",
+    "cloudfront:setup": "sls deploy --aws-profile myLearn",
     "cloudfront:domainInfo": "sls domainInfo",
     "cloudfront:invalidateCache": "sls invalidateCloudFrontCache",
     "cloudfront:build:deploy": "npm run client:build:deploy && npm run cloudfront:invalidateCache",
@@ -45,13 +45,16 @@
     "serverless": "^2.29.0",
     "serverless-finch": "^2.6.0",
     "typescript": "~4.3.5",
-    "yup": "^0.29.1"
+    "yup": "^0.29.1",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0"
+    "@types/jest": "^24.0.0",
+    "@types/material-ui": "^0.21.12",
+    "serverless-single-page-app-plugin": "^1.0.4"
   },
   "eslintConfig": {
     "extends": "react-app"
