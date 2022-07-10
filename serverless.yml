@@ -1,12 +1,12 @@
-service: node-in-aws-web
+service: react-redux-cloudshop
 
-frameworkVersion: '2'
+frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: default
 
 plugins:
   - serverless-finch
@@ -17,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: rsschool-dk-shop-react-cloudfront
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -46,15 +46,15 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
-            - Sid: 'AllowCloudFrontAccessIdentity'
+            - Sid: "AllowCloudFrontAccessIdentity"
               Effect: Allow
               Action: s3:GetObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
               Principal:
                 AWS:
                   Fn::Join:
-                    - ' '
-                    - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity'
+                    - " "
+                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
                       - !Ref OriginAccessIdentity
 
     OriginAccessIdentity:
@@ -75,10 +75,10 @@ resources:
               ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig
               S3OriginConfig:
                 OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${OriginAccessIdentity}
-             # CustomOriginConfig:
-             #   HTTPPort: 80
-             #   HTTPSPort: 443
-             #   OriginProtocolPolicy: https-only
+              # CustomOriginConfig:
+              #   HTTPPort: 80
+              #   HTTPSPort: 443
+              #   OriginProtocolPolicy: https-only
           Enabled: true
           IPV6Enabled: true
           HttpVersion: http2
@@ -93,8 +93,8 @@ resources:
               ResponseCode: 200
               ResponsePagePath: /index.html
           DefaultCacheBehavior:
-            AllowedMethods: [ 'GET', 'HEAD', 'OPTIONS' ]
-            CachedMethods: [ 'GET', 'HEAD', 'OPTIONS' ]
+            AllowedMethods: ["GET", "HEAD", "OPTIONS"]
+            CachedMethods: ["GET", "HEAD", "OPTIONS"]
             ForwardedValues:
               Headers:
                 - Access-Control-Request-Headers
@@ -113,7 +113,7 @@ resources:
             DefaultTTL: 0
           ## The certificate to use when viewers use HTTPS to request objects.
           ViewerCertificate:
-            CloudFrontDefaultCertificate: 'true'
+            CloudFrontDefaultCertificate: "true"
           ## Uncomment the following section in case you want to enable logging for CloudFront requests
           # Logging:
           #   IncludeCookies: 'false'
