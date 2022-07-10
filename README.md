@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+### What was done?
+
+1. Manual deployment Done(S3 bucket, CloudFront distribution, CloudFront distribution invalidation)
+2. Automated deployment using serverless-finch + serverless single-page-app plugins is done.
+
+- URL of Manual deployment: https://d35e3z78mwkgnj.cloudfront.net
+- URL of Automated deployment:  https://dms1avqeylvnw.cloudfront.net
+
 ## Available Scripts
 
 In the project directory, you can run:  
