@@ -1,3 +1,7 @@
+## Çağla Gezgen aws node 2022
+- S3: http://caglagzgn-node-aws-2022.s3-website-us-east-1.amazonaws.com/
+- CloudFront: https://d2ypzn6w69g9c5.cloudfront.net/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

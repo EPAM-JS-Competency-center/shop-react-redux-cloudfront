@@ -6,6 +6,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   # setup profile for AWS CLI.
+  profile: cagla
   # profile: node-aws
 
 plugins:
@@ -17,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: caglagzgn-node-aws-2022
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
