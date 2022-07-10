@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## CloudFront Distribution URL
+[d1f9hosbq6jjdg.cloudfront.net](d1f9hosbq6jjdg.cloudfront.net)
+
+## S3 Bucket Website
+[http://mvedataydin-epam-node-in-aws-web-bucket.s3-website-us-east-1.amazonaws.com/](http://mvedataydin-epam-node-in-aws-web-bucket.s3-website-us-east-1.amazonaws.com/)
+
 ## Available Scripts
 
 In the project directory, you can run:  
