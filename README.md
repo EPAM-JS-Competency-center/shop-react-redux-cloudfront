@@ -1,3 +1,6 @@
+Application is available at [CloudFront URL](d2ocjv21yccmuj.cloudfront.net) (d2ocjv21yccmuj.cloudfront.net)
+And not available at [S3-website](http://alfiia-first-app.s3-website-us-east-1.amazonaws.com/) http://alfiia-first-app.s3-website-us-east-1.amazonaws.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -43,7 +43,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "serverless": "^2.29.0",
-    "serverless-finch": "^2.6.0",
+    "serverless-finch": "^2.8.0",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin",
     "typescript": "~4.3.5",
     "yup": "^0.29.1"
   },
