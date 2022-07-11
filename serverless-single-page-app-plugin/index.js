@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@AlfiyaRF 
-boale
-/
-serverlessTestApp
-Public template
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-serverlessTestApp/serverless-single-page-app-plugin/index.js /
-@lifter21
-lifter21 feat: serverless-cloudfront
-…
-Latest commit 262f0f5 on Oct 9, 2020
- History
- 1 contributor
-151 lines (134 sloc)  4.21 KB
-
 'use strict';
 
 const spawnSync = require('child_process').spawnSync;
