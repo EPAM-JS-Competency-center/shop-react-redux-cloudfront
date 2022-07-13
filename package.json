@@ -42,8 +42,9 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "serverless": "^2.29.0",
-    "serverless-finch": "^2.6.0",
+    "serverless": "^3.20.0",
+    "serverless-finch": "^4.0.0",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin",
     "typescript": "~4.3.5",
     "yup": "^0.29.1"
   },
@@ -72,5 +73,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8"
   }
 }
