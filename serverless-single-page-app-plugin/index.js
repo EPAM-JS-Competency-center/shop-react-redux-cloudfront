@@ -149,18 +149,3 @@ class ServerlessPlugin {
 }
 
 module.exports = ServerlessPlugin;
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-You have unread notifications
