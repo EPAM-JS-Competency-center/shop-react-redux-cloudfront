@@ -11890,8 +11890,8 @@ serverless-finch@^4.0.0:
     mime "^3.0.0"
     minimatch "^5.0.1"
 
-"serverless-single-page-app-plugin@file:./serverless-single-page-app-plugin":
-  version "1.0.1"
+"serverless-single-page-app-plugin@file:./serverless_plugins":
+  version "0.0.0"
 
 serverless@^3.20.0:
   version "3.20.0"
