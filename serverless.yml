@@ -1,4 +1,4 @@
-service: shop-serverless-aws-web
+service: shop-aws-web
 
 frameworkVersion: '2'
 
@@ -17,7 +17,7 @@ plugins:
 
 custom:
   client:
-    bucketName: shop-serverless-aws-web-bucket
+    bucketName: shop-aws-web-bucket
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
