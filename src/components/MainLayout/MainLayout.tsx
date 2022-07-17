@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingBottom: theme.spacing(8),
   },
+  main: {
+    backgroundColor: 'AntiqueWhite',
+  },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
@@ -34,7 +37,7 @@ const MainLayout: React.FC = ({children}) => {
   return (
     <>
       <Header/>
-      <main>
+      <main className={classes.main}>
         <Container className={classes.container} maxWidth="md">
           {children!}
         </Container>

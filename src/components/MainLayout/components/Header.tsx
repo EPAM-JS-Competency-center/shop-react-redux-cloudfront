@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     homeLink: {
+      display: 'flex',
       color: 'white',
       textDecoration: 'none'
     }
@@ -46,7 +47,9 @@ export default function Header() {
     <AppBar position="relative">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          <Link className={classes.homeLink} to="/"></Link>
+          <Link className={classes.homeLink} to="/">{
+            <img src="https://imgsforbe.s3.eu-west-1.amazonaws.com/Screen+Shot+2022-07-17+at+17.23.28.png" alt="Logo"/>
+          }</Link>
         </Typography>
 
         {auth && (

@@ -62,7 +62,7 @@ const Form = (props: FormikProps<FormikValues>) => {
           <Field
             component={TextField}
             name="price"
-            label="Price ($)"
+            label="Price (₽)"
             fullWidth
             autoComplete="off"
             required

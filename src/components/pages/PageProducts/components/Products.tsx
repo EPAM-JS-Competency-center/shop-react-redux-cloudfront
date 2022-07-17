@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardMedia: {
     paddingTop: '56.25%', // 16:9
+    minHeight: '250px',
   },
   cardContent: {
     flexGrow: 1,
@@ -53,7 +54,7 @@ export default function Products() {
             <Card className={classes.card}>
               <CardMedia
                 className={classes.cardMedia}
-                image={`https://source.unsplash.com/random?sig=${index}`}
+                image={product.img}
                 title="Image title"
               />
               <CardContent className={classes.cardContent}>
