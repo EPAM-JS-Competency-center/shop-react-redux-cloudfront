@@ -5,7 +5,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "client:deploy": "sls client deploy --no-config-change --no-policy-change --no-cors-change",
+    "client:deploy": "serverless client deploy --no-config-change --no-policy-change --no-cors-change",
     "client:deploy:nc": "npm run client:deploy -- --no-confirm",
     "client:build:deploy": "npm run build && npm run client:deploy",
     "client:build:deploy:nc": "npm run build && npm run client:deploy:nc",
@@ -44,6 +44,7 @@
     "react-scripts": "3.4.1",
     "serverless": "^2.29.0",
     "serverless-finch": "^2.6.0",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin",
     "typescript": "^3.2.1",
     "yup": "^0.29.1"
   },

@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Home Work 2
+link to CloudFront URL: https://d3551j98wuhbe5.cloudfront.net ;
+
+Link to S3-website: http://shop-app-pract.s3-website-eu-west-1.amazonaws.com/; You will see only 403 status, because of policy settings, we can see objects only from CloudFront service with safe https protocol.
+
 ## Available Scripts
 
 In the project directory, you can run:  

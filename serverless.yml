@@ -17,11 +17,11 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: shop-app-pract-sls
     distributionFolder: build
-  s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
+  s3BucketName: ${self:custom.client.bucketName}
   s3LocalPath: ${self:custom.client.distributionFolder}/
 
 resources:
