@@ -72,4 +72,4 @@ Remove an entire stack configured in `serverless.yml` via CloudFormation.
 
 ## Task 2.3
 - S3 Static Hosting link: [http://lc-my-shop.s3-website.eu-central-1.amazonaws.com/](http://lc-my-shop.s3-website.eu-central-1.amazonaws.com/)
-- Cloudfront link: [https://d6c30739ziqso.cloudfront.net/](https://d6c30739ziqso.cloudfront.net/)
+- Cloudfront link: [https://djge9mrjqqlbj.cloudfront.net/](https://djge9mrjqqlbj.cloudfront.net/)
