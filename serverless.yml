@@ -5,6 +5,8 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  profile: myUser
+  region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -17,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: node-in-aws-web-bucket
+    bucketName: e-store-bucket-course
     distributionFolder: build
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -69,7 +71,7 @@ resources:
       Properties:
         DistributionConfig:
           Origins:
-            - DomainName: ${self:custom.s3BucketName}.s3.amazonaws.com
+            - DomainName: !GetAtt WebAppS3Bucket.RegionalDomainName
               ## An identifier for the origin which must be unique within the distribution
               Id: myS3Origin
               ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig

@@ -99,7 +99,7 @@ const Form = (props: FormikProps<FormikValues>) => {
 }
 
 export default function PageOrder() {
-  const {id} = useParams();
+  const {id} = useParams<{ id: string }>();
   const [order, setOrder] = useState<any>({});
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
