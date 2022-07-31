@@ -28,3 +28,5 @@ yarn-error.log*
 
 # package directories
 jspm_packages
+
+package-lock.json
