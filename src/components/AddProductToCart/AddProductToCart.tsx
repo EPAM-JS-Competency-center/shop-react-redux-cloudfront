@@ -1,46 +1,50 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import {Product} from "models/Product";
-import CartIcon from "@material-ui/icons/ShoppingCart";
-import Add from "@material-ui/icons/Add";
-import Remove from "@material-ui/icons/Remove";
-import IconButton from "@material-ui/core/IconButton";
-import {useDispatch, useSelector} from "react-redux";
-import {addToCart, selectCartItems, removeFromCart} from "store/cartSlice";
+import Typography from "@mui/material/Typography";
+import { Product } from "~/models/Product";
+import CartIcon from "@mui/icons-material/ShoppingCart";
+import Add from "@mui/icons-material/Add";
+import Remove from "@mui/icons-material/Remove";
+import IconButton from "@mui/material/IconButton";
+import { useCart, useInvalidateCart, useUpsertCart } from "~/queries/cart";
 
 type AddProductToCartProps = {
-  product: Product
+  product: Product;
 };
 
-export default function AddProductToCart({product}: AddProductToCartProps) {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
-  const cartItem = cartItems.find(i => i.product.id === product.id);
+export default function AddProductToCart({ product }: AddProductToCartProps) {
+  const { data = [], isFetching } = useCart();
+  const { mutate: upsertCart } = useUpsertCart();
+  const invalidateCart = useInvalidateCart();
+  const cartItem = data.find((i) => i.product.id === product.id);
 
-  return (
-    <>
-    {
-      cartItem ?
-        (
-          <>
-            <IconButton onClick={() => dispatch(removeFromCart(product))}>
-              <Remove color={"secondary"}/>
-            </IconButton>
-            <Typography align="center">
-              {cartItem.count}
-            </Typography>
-            <IconButton onClick={() => dispatch(addToCart(product))}>
-              <Add color={"secondary"}/>
-            </IconButton>
-            </>
-        )
-        :
-        (
-          <IconButton onClick={() => dispatch(addToCart(product))}>
-            <CartIcon color={"secondary"}/>
-          </IconButton>
-        )
+  const addProduct = () => {
+    upsertCart(
+      { product, count: cartItem ? cartItem.count + 1 : 1 },
+      { onSuccess: invalidateCart }
+    );
+  };
+
+  const removeProduct = () => {
+    if (cartItem) {
+      upsertCart(
+        { ...cartItem, count: cartItem.count - 1 },
+        { onSuccess: invalidateCart }
+      );
     }
+  };
+
+  return cartItem ? (
+    <>
+      <IconButton disabled={isFetching} onClick={removeProduct} size="large">
+        <Remove color={"secondary"} />
+      </IconButton>
+      <Typography align="center">{cartItem.count}</Typography>
+      <IconButton disabled={isFetching} onClick={addProduct} size="large">
+        <Add color={"secondary"} />
+      </IconButton>
     </>
+  ) : (
+    <IconButton disabled={isFetching} onClick={addProduct} size="large">
+      <CartIcon color={"secondary"} />
+    </IconButton>
   );
 }

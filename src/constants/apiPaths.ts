@@ -1,4 +1,3 @@
-
 const API_PATHS = {
   product: 'https://rx3w8zwdt0.execute-api.eu-west-1.amazonaws.com/dev/products',
   order: 'https://.execute-api.eu-west-1.amazonaws.com/dev',

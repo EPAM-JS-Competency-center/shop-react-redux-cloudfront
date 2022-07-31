@@ -1,18 +1,18 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import CartItems from "components/CartItems/CartItems";
-import {useSelector} from "react-redux";
-import {selectCartItems} from "store/cartSlice";
+import Typography from "@mui/material/Typography";
+import CartItems from "~/components/CartItems/CartItems";
+import { CartItem } from "~/models/CartItem";
 
-export default function ReviewCart() {
-  const cartItems = useSelector(selectCartItems);
+type ReviewCartProps = {
+  items: CartItem[];
+};
 
+export default function ReviewCart({ items }: ReviewCartProps) {
   return (
-    <React.Fragment>
+    <>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
-      <CartItems items={cartItems} isEditable/>
-    </React.Fragment>
+      <CartItems items={items} isEditable />
+    </>
   );
 }

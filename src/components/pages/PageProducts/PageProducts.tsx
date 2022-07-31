@@ -1,19 +1,10 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Products from "components/pages/PageProducts/components/Products";
-
-const useStyles = makeStyles((theme) => ({
-  content: {
-    padding: theme.spacing(3, 0, 3),
-  },
-}));
+import Products from "~/components/pages/PageProducts/components/Products";
+import Box from "@mui/material/Box";
 
 export default function PageProducts() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.content}>
-      <Products/>
-    </div>
+    <Box py={3}>
+      <Products />
+    </Box>
   );
 }
