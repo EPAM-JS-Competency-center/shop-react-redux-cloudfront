@@ -1,5 +1,10 @@
 # React-shop-cloudfront
 
+Application is available at [CloudFront URL](https://d2ocjv21yccmuj.cloudfront.net) (d2ocjv21yccmuj.cloudfront.net)<br />
+And not available at [S3-website](http://alfiia-first-app.s3-website-us-east-1.amazonaws.com/) (http://alfiia-first-app.s3-website-us-east-1.amazonaws.com/)<br />
+
+Integrates with [BE](https://github.com/AlfiyaRF/shop-be)<br />
+
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
