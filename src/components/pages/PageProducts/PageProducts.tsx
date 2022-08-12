@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PageProducts() {
   const classes = useStyles();
-
   return (
     <div className={classes.content}>
       <Products/>

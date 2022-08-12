@@ -9,26 +9,27 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import axios from 'axios';
 
 axios.interceptors.response.use(
-  response => {
-    return response;
-  },
-  function(error) {
-    if (error?.response?.status === 400) {
-      alert(error.response.data?.data);
-    }
+    response => {
+        return response;
+    },
+    function (error) {
+        const status = error?.response?.status;
+        if (status === 400 || status === 401 || status === 403) {
+            alert(error.response.data?.data);
+        }
 
-    return Promise.reject(error?.response ?? error);
-  }
+        return Promise.reject(error?.response ?? error);
+    }
 );
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <CssBaseline/>
-      <App/>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Provider store={store}>
+            <CssBaseline/>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
