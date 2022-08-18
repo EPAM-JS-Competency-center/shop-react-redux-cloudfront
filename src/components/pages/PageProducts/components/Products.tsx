@@ -44,9 +44,9 @@ export default function Products() {
     }, [])
 
     const getData = async () => {
+        const ps = await getProduct();
         const authorization = localStorage.getItem('authorization_token');
         config.headers.Authorization += `${authorization}`
-        const ps = await getProduct();
         for (let product of ps) {
             const image = await getImage(product.title).then(image => image);
             console.log(image);
