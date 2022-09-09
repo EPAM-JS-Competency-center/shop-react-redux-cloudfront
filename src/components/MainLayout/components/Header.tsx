@@ -43,7 +43,7 @@ export default function Header() {
     };
 
     useEffect(() => {
-        localStorage.setItem('authorization_token', 'bWFuZ3VpYW5vZXBhbT1URVNUX1BBU1NXT1JE')
+
     }, [])
 
     return (

@@ -11,6 +11,7 @@ import {formatAsPrice} from "utils/utils";
 import AddProductToCart from "components/AddProductToCart/AddProductToCart";
 import axios from 'axios';
 import API_PATHS from "constants/apiPaths";
+import {getData} from "./ProductService";
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -35,18 +36,24 @@ export default function Products() {
     const [products, setProducts] = useState<Product[]>([]);
     const config = {
         headers: {
-            Authorization: `Basic `
+            Authorization: ''
         }
     }
 
     useEffect(() => {
-        getData().then(r => console.log(r));
+        getProducts().then(r => console.log(r));
+        // getData().then(r => console.log(r));
     }, [])
 
-    const getData = async () => {
+    const getProducts = async () => {
+        const ps = await getData().then((data: any) => data);
+        setProducts(ps);
+    }
+
+    /*const getData = async () => {
+        debugger;
         const ps = await getProduct();
-        const authorization = localStorage.getItem('authorization_token');
-        config.headers.Authorization += `${authorization}`
+        config.headers.Authorization += localStorage.getItem('Basic');
         for (let product of ps) {
             const image = await getImage(product.title).then(image => image);
             console.log(image);
@@ -57,15 +64,17 @@ export default function Products() {
     }
 
     const getProduct = async () => {
-        return await axios.get(`${API_PATHS.product}/products`)
+        debugger
+        config.headers.Authorization += localStorage.getItem('token');
+        return await axios.get(`${API_PATHS.product}/products`, config)
             .then(res => res.data);
-    }
+    }*/
 
-    const getImage = async (image: string) => {
+    /*const getImage = async (image: string) => {
         return await axios.get(`${API_PATHS.import}/${image}`, config)
             .then((res) => res.data.url)
             .catch((error) => console.log(error));
-    }
+    }*/
 
     return (
         <Grid container spacing={4}>
