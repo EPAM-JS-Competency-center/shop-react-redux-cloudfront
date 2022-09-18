@@ -9,6 +9,7 @@ import Menu from "@mui/material/Menu";
 import Cart from "~/components/MainLayout/components/Cart";
 import { Link as RouterLink } from "react-router-dom";
 import Link from "@mui/material/Link";
+import TornadoSharpIcon from "@mui/icons-material/TornadoSharp";
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -24,7 +25,7 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar position="relative" style={{ background: "#2E3B55" }}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           <Link
@@ -33,7 +34,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store!
+            <TornadoSharpIcon /> Paradise Store
           </Link>
         </Typography>
 
