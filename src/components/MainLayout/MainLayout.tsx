@@ -8,12 +8,13 @@ import Box from "@mui/material/Box";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {"Copyright © RS-school "}
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
-        My Store
+        My Store 
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
+      {", "}
+      by AnnaSK88
     </Typography>
   );
 }

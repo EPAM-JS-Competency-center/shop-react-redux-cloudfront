@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "deploy:s3": "serverless client deploy --no-config-change --no-policy-change --no-cors-change",
     "preview": "npm run build && vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
