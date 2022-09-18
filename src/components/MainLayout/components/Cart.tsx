@@ -10,7 +10,7 @@ export default function Cart() {
 
   return (
     <IconButton color="inherit" component={Link} to="/cart" size="large">
-      <Badge badgeContent={badgeContent} color="secondary">
+      <Badge badgeContent={badgeContent} color="info">
         <CartIcon />
       </Badge>
     </IconButton>
