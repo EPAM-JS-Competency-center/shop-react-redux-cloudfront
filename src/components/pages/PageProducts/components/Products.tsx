@@ -6,14 +6,10 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { formatAsPrice } from "~/utils/utils";
 import AddProductToCart from "~/components/AddProductToCart/AddProductToCart";
-import { useAvailableProducts } from "~/queries/products";
+
+import data from "~/productsData";
 
 export default function Products() {
-  const { data = [], isLoading } = useAvailableProducts();
-
-  if (isLoading) {
-    return <Typography>Loading...</Typography>;
-  }
 
   return (
     <Grid container spacing={4}>
@@ -25,7 +21,7 @@ export default function Products() {
           >
             <CardMedia
               sx={{ pt: "56.25%" }}
-              image={`https://source.unsplash.com/random?sig=${index}`}
+              image={`https://my-vegetables-shop.s3.eu-west-1.amazonaws.com/${product.title}.jpg`}
               title="Image title"
             />
             <CardContent sx={{ flexGrow: 1 }}>
