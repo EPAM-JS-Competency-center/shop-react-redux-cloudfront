@@ -1,4 +1,4 @@
-service: my-store-app
+service: game-assets-app-test-3
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: game-assets-app-test-3
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 

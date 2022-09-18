@@ -1,3 +1,7 @@
+# URLs
+- S3 bucket link: http://game-assets-app-test-3.s3-website-eu-west-1.amazonaws.com/ 
+- Cloudfront link: https://do4g8n5lhgtdr.cloudfront.net/
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
