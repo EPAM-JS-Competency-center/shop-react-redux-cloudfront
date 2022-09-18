@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: dipppp84-my-store-app-react
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
