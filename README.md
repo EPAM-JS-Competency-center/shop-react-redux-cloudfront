@@ -1,3 +1,14 @@
+# My links for shop-react-redux-cloudfront
+
+### manual deployment 
+- Bucket website url: http://my-shop-rs-app.s3-website-eu-west-1.amazonaws.com
+- CloudFront url: https://d11iin9a8j3srj.cloudfront.net
+
+### automated deployment
+- Bucket website url: http://my-shop-two-rs-app.s3-website-us-east-1.amazonaws.com
+- CloudFront url: https://dh838o96m4619.cloudfront.net
+
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
