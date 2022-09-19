@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
-        My Store
+        Luigi's Pizza
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -22,7 +22,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
       <Header />
-      <main>
+      <main >
         <Container sx={{ pb: 8 }} maxWidth="md">
           {children}
         </Container>
