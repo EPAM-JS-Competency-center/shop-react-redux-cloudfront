@@ -14,17 +14,21 @@ test("Renders products list", async () => {
   const products: AvailableProduct[] = [
     {
       id: "1",
-      title: "Product 1",
+      name: "Product 1",
       description: "Product 1 description",
       price: 1,
       count: 1,
+      imageUrl: "https://via.placeholder.com/150",
+      quantity: 1,
     },
     {
       id: "2",
-      title: "Product 2",
+      name: "Product 2",
       description: "Product 2 description",
       price: 2,
       count: 2,
+      imageUrl: "https://via.placeholder.com/150",
+      quantity: 2,
     },
   ];
   server.use(
@@ -47,7 +51,7 @@ test("Renders products list", async () => {
 
   await waitForElementToBeRemoved(() => screen.queryByText(/Loading/));
   products.forEach((product) => {
-    expect(screen.getByText(product.title)).toBeInTheDocument();
+    expect(screen.getByText(product.name)).toBeInTheDocument();
     expect(screen.getByText(formatAsPrice(product.price))).toBeInTheDocument();
   });
 });
