@@ -1,4 +1,6 @@
-service: my-store-app
+org: nicholasbarnardepam
+console: true
+service: shop-react-redux-cloudfront
 
 frameworkVersion: "3"
 
