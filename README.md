@@ -74,8 +74,8 @@ Remove an entire stack configured in `serverless.yml` via CloudFormation.
 
 ### App S3 Bucket:
 
-[https://shop-react-redux-cloudfront-nb.s3.eu-west-1.amazonaws.com/index.html](https://shop-react-redux-cloudfront-nb.s3.eu-west-1.amazonaws.com/index.html)
+[https://shop-react-redux-cloudfront-nbepam.s3.eu-west-1.amazonaws.com/index.html](https://shop-react-redux-cloudfront-nbepam.s3.eu-west-1.amazonaws.com/index.html)
 
 ### Cloudfront Distribution:
 
-[https://d2esvxpaf4wcl7.cloudfront.net](https://d2esvxpaf4wcl7.cloudfront.net)
+[https://dre1huo89r0ch.cloudfront.net/](https://dre1huo89r0ch.cloudfront.net/)
