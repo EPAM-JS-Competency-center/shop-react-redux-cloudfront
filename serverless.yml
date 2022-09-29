@@ -1,11 +1,11 @@
-service: my-store-app
+service: ${self:custom.package.name}
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: eu-central-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -18,8 +18,9 @@ plugins:
   - serverless-s3-cleaner
 
 custom:
+  package: ${file(./package.json)}
   client:
-    bucketName: my-store-app
+    bucketName: ${self:custom.package.name}-bucket
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
