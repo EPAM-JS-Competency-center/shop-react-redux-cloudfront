@@ -1,6 +1,6 @@
 org: nicholasbarnardepam
 console: true
-service: shop-react-redux-cloudfront
+service: serverless-aws
 
 frameworkVersion: "3"
 
@@ -21,7 +21,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: shop-react-redux-cloudfront-nbepam
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
