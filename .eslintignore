@@ -1,4 +1,4 @@
 node_modules
 public
 vite.config.ts
-serverless.yml
+dist
