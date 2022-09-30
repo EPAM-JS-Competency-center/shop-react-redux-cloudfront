@@ -78,4 +78,8 @@ Remove an entire stack configured in `serverless.yml` via CloudFormation.
 
 ### Cloudfront Distribution:
 
-[https://dre1huo89r0ch.cloudfront.net/](https://dre1huo89r0ch.cloudfront.net/)
+[https://dre1huo89r0ch.cloudfront.net/](https://dre1huo89r0ch.cloudfront.net/index.html)
+
+### Pull Request:
+
+[https://github.com/EPAM-JS-Competency-center/shop-react-redux-cloudfront/pull/196](https://github.com/EPAM-JS-Competency-center/shop-react-redux-cloudfront/pull/196)
