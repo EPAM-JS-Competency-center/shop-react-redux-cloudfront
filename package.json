@@ -59,6 +59,7 @@
     "prettier": "2.7.1",
     "serverless": "^3.20.0",
     "serverless-finch": "^4.0.0",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin",
     "serverless-s3-cleaner": "^2.0.1",
     "typescript": "^4.7.4",
     "vite": "^2.9.13",
