@@ -24,3 +24,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# System Files
+.DS_Store
+Thumbs.db
+
+jspm_packages
+
+# Serverless directories
+.serverless
