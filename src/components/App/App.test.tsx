@@ -18,6 +18,7 @@ test("Renders products list", async () => {
       description: "Product 1 description",
       price: 1,
       count: 1,
+      img: "https://soccershop.by/image/cache/catalog/Footwear/Nike/new/FirmGround/data-images-butsi-nike-db5611-611-693x465-1024x1024.jpg",
     },
     {
       id: "2",
@@ -25,6 +26,7 @@ test("Renders products list", async () => {
       description: "Product 2 description",
       price: 2,
       count: 2,
+      img: "https://soccershop.by/image/cache/catalog/Footwear/Nike/new/FirmGround/data-images-butsi-nike-db5611-611-693x465-1024x1024.jpg",
     },
   ];
   server.use(
