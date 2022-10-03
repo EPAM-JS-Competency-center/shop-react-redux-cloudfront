@@ -1,4 +1,4 @@
-service: my-store-app
+service: klimchuk-store-app
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: klimchuk-store-app
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
