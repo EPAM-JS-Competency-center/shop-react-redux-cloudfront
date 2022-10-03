@@ -1,4 +1,4 @@
-service: my-store-app
+service: ym-my-store-app
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: ym-my-store-app
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
