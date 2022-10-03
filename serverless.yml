@@ -1,11 +1,11 @@
-service: my-store-app
+service: the-mobile-store
 
 frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
-  region: eu-west-1
+  runtime: nodejs16.x
+  region: ap-south-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-mobile-store
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -55,12 +55,7 @@ resources:
               Effect: Allow
               Action: s3:GetObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
-              Principal:
-                AWS:
-                  Fn::Join:
-                    - " "
-                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
-                      - !Ref OriginAccessIdentity
+              Principal: "*"
 
     OriginAccessIdentity:
       Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
