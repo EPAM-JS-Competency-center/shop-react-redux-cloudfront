@@ -69,3 +69,9 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+# Live Frontend application
+
+- [S3 bucket](http://cloudx-frontend-app-auto-provisioning.s3-website-eu-west-1.amazonaws.com/) to host and serve 
+an application origin. Public access is denied via bucket policy.
+- [CloudFront URL](https://d3u0obm6xgz4dg.cloudfront.net/) to serve the application from S3 bucket over HTTPs. 

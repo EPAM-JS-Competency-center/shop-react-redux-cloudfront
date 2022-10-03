@@ -1,13 +1,13 @@
-service: my-store-app
+service: cloudx-frontend-app
 
 frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   region: eu-west-1
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  # user profile for AWS CLI as stated in credentials file, let's use [default].
+  profile: default
 
 plugins:
   - serverless-finch
@@ -17,13 +17,18 @@ plugins:
   - serverless-single-page-app-plugin
   - serverless-s3-cleaner
 
+# Serverless-finch plugin configuration for deployment of static website to AWS S3:
 custom:
   client:
-    bucketName: my-store-app
+    ## AWS S3 bucket name for build deployment automation.
+    # bucketName: cloudx-frontend-app
+    ## AWS S3 bucket name for automated infrastructure creation via CloudFormation and build deployment automation:
+    bucketName: cloudx-frontend-app-auto-provisioning
+    ## Local build directory:
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
-  ## Serverless-single-page-app-plugin configuration:
+  ## Serverless-single-page-app-plugin configuration for SPA to AWS S3 and CloudFront:
   s3LocalPath: ${self:custom.client.distributionFolder}/
   serverless-s3-cleaner:
     buckets:

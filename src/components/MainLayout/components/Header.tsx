@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store!
+            My CloudX Store: frontend (deployed by Rostislav Sergeenkov)
           </Link>
         </Typography>
 
