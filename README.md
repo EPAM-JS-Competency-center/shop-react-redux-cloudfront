@@ -1,6 +1,6 @@
 # React-shop-cloudfront
 
-S3 BUcket URL : https://shop-aws-react-app.s3.ap-south-1.amazonaws.com/admin/orders
+S3 BUcket URL : https://shop-aws-react-app.s3.ap-south-1.amazonaws.com/index.html
 
 
 Cloud Front URL  :  https://d1tuaumxyuz7pt.cloudfront.net/
@@ -11,6 +11,8 @@ Github Repo : https://github.com/LaxmanPatel/shop-react-redux-cloudfront
 
 
 
+https://shop-aws-react-app.s3.ap-south-1.amazonaws.com/index.html
+https://shop-aws-react-app.s3.ap-south-1.amazonaws.com/index.html
 
 
 
