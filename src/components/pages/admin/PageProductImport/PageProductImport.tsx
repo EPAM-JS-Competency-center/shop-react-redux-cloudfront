@@ -9,10 +9,7 @@ export default function PageProductImport() {
   return (
     <Box py={3}>
       <Box mb={2} display="flex" justifyContent="space-between">
-        <CSVFileImport
-          url={`${API_PATHS.import}/import`}
-          title="Import Products CSV"
-        />
+        <CSVFileImport url={API_PATHS.import} title="Import Products CSV" />
         <Button
           size="small"
           color="primary"

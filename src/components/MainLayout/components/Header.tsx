@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            Alhladkiy sport shop!
+            Alhladkiy sport store!
           </Link>
         </Typography>
 
