@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: mradaman-shop-react-redux-cloudfront
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
