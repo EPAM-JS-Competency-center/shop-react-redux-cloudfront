@@ -5,40 +5,34 @@ import { AvailableProduct, Product } from "~/models/Product";
 
 export const products: Product[] = [
   {
-    description: "Short Product Description1",
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
     price: 24,
-    title: "ProductOne",
+    product_name: "ProductOne",
   },
   {
-    description: "Short Product Description7",
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
     price: 15,
-    title: "ProductTitle",
+    product_name: "Productproduct_name",
   },
   {
-    description: "Short Product Description2",
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a3",
     price: 23,
-    title: "Product",
+    product_name: "Product",
   },
   {
-    description: "Short Product Description4",
     id: "7567ec4b-b10c-48c5-9345-fc73348a80a1",
     price: 15,
-    title: "ProductTest",
+    product_name: "ProductTest",
   },
   {
-    description: "Short Product Descriptio1",
     id: "7567ec4b-b10c-48c5-9445-fc73c48a80a2",
     price: 23,
-    title: "Product2",
+    product_name: "Product2",
   },
   {
-    description: "Short Product Description7",
     id: "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
     price: 15,
-    title: "ProductName",
+    product_name: "ProductName",
   },
 ];
 
@@ -49,19 +43,17 @@ export const availableProducts: AvailableProduct[] = products.map(
 export const cart: CartItem[] = [
   {
     product: {
-      description: "Short Product Description1",
       id: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
       price: 24,
-      title: "ProductOne",
+      product_name: "ProductOne",
     },
     count: 2,
   },
   {
     product: {
-      description: "Short Product Description7",
       id: "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
       price: 15,
-      title: "ProductName",
+      product_name: "ProductName",
     },
     count: 5,
   },
