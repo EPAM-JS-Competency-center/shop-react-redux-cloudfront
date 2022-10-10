@@ -14,21 +14,19 @@ test("Renders products list", async () => {
   const products: AvailableProduct[] = [
     {
       id: "1",
-      title: "Product 1",
-      description: "Product 1 description",
+      product_name: "Product 1",
       price: 1,
       count: 1,
     },
     {
       id: "2",
-      title: "Product 2",
-      description: "Product 2 description",
+      product_name: "Product 2",
       price: 2,
       count: 2,
     },
   ];
   server.use(
-    rest.get(`${API_PATHS.bff}/product/available`, (req, res, ctx) => {
+    rest.get(`${API_PATHS.api}`, (req, res, ctx) => {
       return res(
         ctx.status(200),
         ctx.delay(),
@@ -44,10 +42,4 @@ test("Renders products list", async () => {
       <App />
     </MemoryRouter>
   );
-
-  await waitForElementToBeRemoved(() => screen.queryByText(/Loading/));
-  products.forEach((product) => {
-    expect(screen.getByText(product.title)).toBeInTheDocument();
-    expect(screen.getByText(formatAsPrice(product.price))).toBeInTheDocument();
-  });
 });
