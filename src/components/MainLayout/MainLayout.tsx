@@ -10,7 +10,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
-        My Store
+          AlehB react/redux e-store app
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

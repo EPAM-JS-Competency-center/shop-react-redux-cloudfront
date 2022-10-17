@@ -1,4 +1,4 @@
-service: my-store-app
+service: alehb-react-redux-e-store-app
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: alehb-react-redux-e-store-bucket
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -102,10 +102,11 @@ resources:
             CachedMethods: ["GET", "HEAD", "OPTIONS"]
             ForwardedValues:
               Headers:
-                - Access-Control-Request-Headers
-                - Access-Control-Request-Method
-                - Origin
-                - Authorization
+                - Access-Control-Allow-Origin *
+#                - Access-Control-Request-Headers
+#                - Access-Control-Request-Method
+#                - Origin
+#                - Authorization
               ## Defining if and how the QueryString and Cookies are forwarded to the origin which in this case is S3
               QueryString: false
               Cookies:

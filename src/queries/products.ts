@@ -8,10 +8,10 @@ export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
     "available-products",
     async () => {
-      const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.bff}/product/available`
+      const res = await axios.get<{ items: AvailableProduct[] }>(
+        `${API_PATHS.bff}/products`
       );
-      return res.data;
+      return res.data.items;
     }
   );
 }
@@ -28,10 +28,10 @@ export function useAvailableProduct(id?: string) {
   return useQuery<AvailableProduct, AxiosError>(
     ["product", { id }],
     async () => {
-      const res = await axios.get<AvailableProduct>(
-        `${API_PATHS.bff}/product/${id}`
+      const res = await axios.get<{ items: [AvailableProduct] }>(
+        `${API_PATHS.bff}/products/${id}`
       );
-      return res.data;
+      return res.data.items[0];
     },
     { enabled: !!id }
   );
@@ -48,7 +48,7 @@ export function useRemoveProductCache() {
 
 export function useUpsertAvailableProduct() {
   return useMutation((values: AvailableProduct) =>
-    axios.put<AvailableProduct>(`${API_PATHS.bff}/product`, values, {
+    axios.post<AvailableProduct>(`${API_PATHS.bff}/product`, values, {
       headers: {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
       },

@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store!
+            AlehB react/redux e-store app
           </Link>
         </Typography>
 

@@ -1,9 +1,9 @@
 {
-  "name": "my-store-app",
+  "name": "alehb-reach-redux-e-store-app",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
     "build": "tsc && vite build",
     "preview": "npm run build && vite preview",
     "test": "vitest",
