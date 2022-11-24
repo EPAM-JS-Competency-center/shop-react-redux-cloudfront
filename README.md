@@ -69,3 +69,16 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+# Task 2 Application
+
+- [S3 Bucket URL](http://game-shop.s3-website-us-east-1.amazonaws.com) Public access is denied because of the bucket policy.
+- [CloudFront URL](https://dm3h7njeyx0h3.cloudfront.net)
+
+### `script:new`
+
+In case of creation new bucket and cloudfront distribution.
+
+### `script:update`
+
+In case of updating existing indices.
