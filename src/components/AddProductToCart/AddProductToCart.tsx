@@ -1,50 +1,52 @@
 import Typography from "@mui/material/Typography";
-import { Product } from "~/models/Product";
 import CartIcon from "@mui/icons-material/ShoppingCart";
 import Add from "@mui/icons-material/Add";
 import Remove from "@mui/icons-material/Remove";
 import IconButton from "@mui/material/IconButton";
-import { useCart, useInvalidateCart, useUpsertCart } from "~/queries/cart";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../store/Cart/CartAction";
+import { useState } from "react";
 
 type AddProductToCartProps = {
-  product: Product;
+  product;
 };
 
 export default function AddProductToCart({ product }: AddProductToCartProps) {
-  const { data = [], isFetching } = useCart();
-  const { mutate: upsertCart } = useUpsertCart();
-  const invalidateCart = useInvalidateCart();
-  const cartItem = data.find((i) => i.product.id === product.id);
+  const dispatch = useDispatch();
+  const cartItem = useSelector((state: any) =>
+    state.cart.data.find((i) => i.product.id === product.id)
+  );
+  const [count, setCount] = useState(cartItem ? cartItem.count : 1);
 
-  const addProduct = () => {
-    upsertCart(
-      { product, count: cartItem ? cartItem.count + 1 : 1 },
-      { onSuccess: invalidateCart }
-    );
-  };
-
-  const removeProduct = () => {
-    if (cartItem) {
-      upsertCart(
-        { ...cartItem, count: cartItem.count - 1 },
-        { onSuccess: invalidateCart }
-      );
-    }
-  };
-
-  return cartItem ? (
+  return (
     <>
-      <IconButton disabled={isFetching} onClick={removeProduct} size="large">
-        <Remove color={"secondary"} />
-      </IconButton>
-      <Typography align="center">{cartItem.count}</Typography>
-      <IconButton disabled={isFetching} onClick={addProduct} size="large">
-        <Add color={"secondary"} />
-      </IconButton>
+      {cartItem ? (
+        <>
+          <IconButton
+            onClick={() => {
+              dispatch(removeFromCart(product));
+              setCount(cartItem.count);
+            }}
+            size="large"
+          >
+            <Remove color={"secondary"} />
+          </IconButton>
+          <Typography align="center">{count}</Typography>
+          <IconButton
+            onClick={() => {
+              dispatch(addToCart(product));
+              setCount(cartItem.count);
+            }}
+            size="large"
+          >
+            <Add color={"secondary"} />
+          </IconButton>
+        </>
+      ) : (
+        <IconButton onClick={() => dispatch(addToCart(product))} size="large">
+          <CartIcon color={"secondary"} />
+        </IconButton>
+      )}
     </>
-  ) : (
-    <IconButton disabled={isFetching} onClick={addProduct} size="large">
-      <CartIcon color={"secondary"} />
-    </IconButton>
   );
 }
