@@ -1,6 +1,9 @@
 # Cloud Development Course
 
-**CloudFront** Domain: https://d1w693j7hlvh3j.cloudfront.net
+- **CloudFront** Domain: https://d1w693j7hlvh3j.cloudfront.net
+- **S3 Website**: https://cloud-dev-course-shop-react-redux-cloudfront.s3.eu-central-1.amazonaws.com/index.html
+
+---
 
 ## **Task 1**
 
