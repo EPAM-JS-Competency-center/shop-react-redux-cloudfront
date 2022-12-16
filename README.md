@@ -50,4 +50,4 @@
   - [x] Create a Lambda function called `getProductsList`
   - [x] Requested URL should be `/products`
   - [x] Respons should be full array of products
-  - [ ] Endpoint should be integrated with FE
+  - [x] Endpoint should be integrated with FE
