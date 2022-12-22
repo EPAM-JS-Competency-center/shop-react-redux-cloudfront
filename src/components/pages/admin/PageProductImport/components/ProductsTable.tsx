@@ -8,16 +8,19 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { formatAsPrice } from "~/utils/utils";
-import {
-  useAvailableProducts,
-  useDeleteAvailableProduct,
-  useInvalidateAvailableProducts,
-} from "~/queries/products";
+import { useSelector } from "react-redux";
+import { deleteProduct } from "~/store/Products/ProductsAction";
+import { useDispatch } from "react-redux";
+import { getProducts } from "~/store/Products/ProductsAction";
+import { useEffect } from "react";
 
 export default function ProductsTable() {
-  const { data = [] } = useAvailableProducts();
-  const { mutate: deleteAvailableProduct } = useDeleteAvailableProduct();
-  const invalidateAvailableProducts = useInvalidateAvailableProducts();
+  const dispatch = useDispatch();
+  const { data = [] } = useSelector((state: any) => state.products);
+
+  useEffect(() => {
+    dispatch(getProducts(null));
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -56,9 +59,7 @@ export default function ProductsTable() {
                   color="secondary"
                   onClick={() => {
                     if (product.id) {
-                      deleteAvailableProduct(product.id, {
-                        onSuccess: invalidateAvailableProducts,
-                      });
+                      dispatch(deleteProduct(product.id));
                     }
                   }}
                 >

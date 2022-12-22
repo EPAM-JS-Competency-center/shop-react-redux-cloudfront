@@ -6,14 +6,18 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { formatAsPrice } from "~/utils/utils";
 import AddProductToCart from "~/components/AddProductToCart/AddProductToCart";
-import { useAvailableProducts } from "~/queries/products";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProducts } from "~/store/Products/ProductsAction";
 
 export default function Products() {
-  const { data = [], isLoading } = useAvailableProducts();
+  const dispatch = useDispatch();
+  const { data = [] } = useSelector((state: any) => state.products);
 
-  if (isLoading) {
-    return <Typography>Loading...</Typography>;
-  }
+  useEffect(() => {
+    dispatch(getProducts(null));
+  }, []);
 
   return (
     <Grid container spacing={4}>

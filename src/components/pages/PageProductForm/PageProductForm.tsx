@@ -6,22 +6,21 @@ import TextField from "~/components/Form/TextField";
 import { useNavigate, useParams } from "react-router-dom";
 import PaperLayout from "~/components/PaperLayout/PaperLayout";
 import Typography from "@mui/material/Typography";
-import {
-  useAvailableProduct,
-  useInvalidateAvailableProducts,
-  useRemoveProductCache,
-  useUpsertAvailableProduct,
-} from "~/queries/products";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../../store/Products/ProductsAction";
+import { useSelector } from "react-redux";
 
 const initialValues: AvailableProduct = AvailableProductSchema.cast({});
 
 export default function PageProductForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
-  const invalidateAvailableProducts = useInvalidateAvailableProducts();
-  const removeProductCache = useRemoveProductCache();
-  const { data, isLoading } = useAvailableProduct(id);
-  const { mutateAsync: upsertAvailableProduct } = useUpsertAvailableProduct();
+  const data = useSelector((state: any) =>
+    state.products.data.find((i) => i.id === id)
+  );
+  const isLoading = false;
+
   const onSubmit = (values: AvailableProduct) => {
     const formattedValues = AvailableProductSchema.cast(values);
     const productToSave = id
@@ -30,13 +29,8 @@ export default function PageProductForm() {
           id,
         }
       : formattedValues;
-    return upsertAvailableProduct(productToSave, {
-      onSuccess: () => {
-        invalidateAvailableProducts();
-        removeProductCache(id);
-        navigate("/admin/products");
-      },
-    });
+    dispatch(addProduct(productToSave));
+    navigate("/admin/products");
   };
 
   return (

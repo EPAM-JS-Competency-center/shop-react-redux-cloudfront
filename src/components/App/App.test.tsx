@@ -3,7 +3,7 @@ import { test, expect } from "vitest";
 import App from "~/components/App/App";
 import { server } from "~/mocks/server";
 import { rest } from "msw";
-import API_PATHS from "~/constants/apiPaths";
+import { API_PATHS } from "~/constants/apiPaths";
 import { CartItem } from "~/models/CartItem";
 import { AvailableProduct } from "~/models/Product";
 import { renderWithProviders } from "~/testUtils";

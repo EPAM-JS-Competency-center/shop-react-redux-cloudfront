@@ -46,26 +46,7 @@ export const availableProducts: AvailableProduct[] = products.map(
   (product, index) => ({ ...product, count: index + 1 })
 );
 
-export const cart: CartItem[] = [
-  {
-    product: {
-      description: "Short Product Description1",
-      id: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
-      price: 24,
-      title: "ProductOne",
-    },
-    count: 2,
-  },
-  {
-    product: {
-      description: "Short Product Description7",
-      id: "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
-      price: 15,
-      title: "ProductName",
-    },
-    count: 5,
-  },
-];
+export const cart: CartItem[] = [];
 
 export const orders: Order[] = [
   {

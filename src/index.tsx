@@ -1,6 +1,8 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "~/components/App/App";
+import store from "~/store";
+import { Provider } from "react-redux";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter } from "react-router-dom";
@@ -16,7 +18,7 @@ const queryClient = new QueryClient({
 
 if (import.meta.env.DEV) {
   const { worker } = await import("./mocks/browser");
-  worker.start({ onUnhandledRequest: "bypass" });
+  worker.start();
 }
 
 const container = document.getElementById("app");
@@ -24,14 +26,16 @@ const container = document.getElementById("app");
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
