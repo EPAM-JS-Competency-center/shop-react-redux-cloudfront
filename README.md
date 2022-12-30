@@ -51,3 +51,8 @@
   - [x] Requested URL should be `/products`
   - [x] Respons should be full array of products
   - [x] Endpoint should be integrated with FE
+
+### **Task 4**
+
+- [x] **Single Product Model**
+  - [x] Implement a Product model on FE as a joined product with stock table
