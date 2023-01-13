@@ -56,9 +56,12 @@ export default function ProductsTable() {
                   color="secondary"
                   onClick={() => {
                     if (product.id) {
-                      deleteAvailableProduct(product.id, {
-                        onSuccess: invalidateAvailableProducts,
-                      });
+                      deleteAvailableProduct(
+                        { id: product.id },
+                        {
+                          onSuccess: invalidateAvailableProducts,
+                        }
+                      );
                     }
                   }}
                 >
