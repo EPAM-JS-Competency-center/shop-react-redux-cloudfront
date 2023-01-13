@@ -1,5 +1,5 @@
 const ROUTE_PREFIX = "https://";
-const AWS_HASH_ROUTE = "itjgmn47hc";
+const AWS_HASH_ROUTE = "zi0rwocv9a";
 const COMMON_ROUTE = ".execute-api.eu-west-1.amazonaws.com/dev";
 
 const API_PATHS = {
