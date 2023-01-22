@@ -11,6 +11,7 @@ type CSVFileImportProps = {
   title: string;
 };
 const UPLOADED_MESSAGE = " uploaded successfully";
+const ERR_ON_UPLOAD = "file upload failure";
 
 export default function CSVFileImport({ url, title }: CSVFileImportProps) {
   const [file, setFile] = useState<File>();
@@ -40,7 +41,13 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
       formData.append(file.name, file);
 
       await axios
-        .post(`${API_PATHS.base}/import?name=data`, formData)
+        .post(`${API_PATHS.fileImport}/import?name=data`, formData, {
+          headers: {
+            Authorization: `Basic ${btoa(
+              localStorage.getItem("authorization_token") || ""
+            )}`,
+          },
+        })
         .then((response) => {
           if (response.data) {
             setToasterState(true);
@@ -78,7 +85,9 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
           severity={toasterSeverity ? "success" : "error"}
           sx={{ width: "100%" }}
         >
-          {`${file?.name} ${UPLOADED_MESSAGE}`}
+          {`${file?.name} ${
+            toasterSeverity ? UPLOADED_MESSAGE : ERR_ON_UPLOAD
+          }`}
         </Alert>
       </Snackbar>
     </Box>
