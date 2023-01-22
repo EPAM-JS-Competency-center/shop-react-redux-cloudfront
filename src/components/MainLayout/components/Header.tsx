@@ -1,3 +1,4 @@
+// import axios from "axios";
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,6 +24,14 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://o63b1yzpik.execute-api.eu-west-1.amazonaws.com/dev/hello`)
+  //     .then((data: any) => {
+  //       console.log(data);
+  //     });
+  // }, []);
+
   return (
     <AppBar position="relative">
       <Toolbar>
@@ -33,7 +42,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store!
+            My Store! (forked)
           </Link>
         </Typography>
 
