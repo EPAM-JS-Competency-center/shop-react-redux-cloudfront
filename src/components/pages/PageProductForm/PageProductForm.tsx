@@ -36,6 +36,11 @@ export default function PageProductForm() {
         removeProductCache(id);
         navigate("/admin/products");
       },
+      onError: () => {
+        invalidateAvailableProducts();
+        removeProductCache(id);
+        navigate("/admin/products");
+      },
     });
   };
 
