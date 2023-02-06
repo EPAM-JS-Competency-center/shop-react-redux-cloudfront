@@ -69,3 +69,13 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+Module 2
+
+Task 1. Manual deployment to S3 and CloudFront:
+CloudFront link: https://d38s651t68lxju.cloudfront.net/
+S3 link: http://epam-cloudx-course-manual.s3-website-eu-west-1.amazonaws.com/
+
+Task 2. Deployment to CloudFront with serverless-single-page-app-plugin and serverless-finch:
+CloudFront link: https://d1bsy3g0bgzkgx.cloudfront.net/
+S3 link: http://epam-cloudx-course.s3-website-eu-west-1.amazonaws.com/ (should return 403 - Forbidden)
