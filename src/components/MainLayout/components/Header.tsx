@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store! (Static App, v.1)
+            My Store! (Static App, v.2.1)
           </Link>
         </Typography>
 
