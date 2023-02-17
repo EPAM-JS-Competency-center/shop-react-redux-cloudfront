@@ -69,3 +69,11 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+### CloudFront
+
+https://d2p7nm6cx6v68w.cloudfront.net/
+
+### S3-website
+
+http://my-very-first-application.s3-website-eu-west-1.amazonaws.com/
