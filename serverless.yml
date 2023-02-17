@@ -4,7 +4,7 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
@@ -36,12 +36,6 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: index.html
-        # VersioningConfiguration:
-        #   Status: Enabled
 
     ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
     WebAppS3BucketPolicy:
@@ -51,22 +45,15 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
-            - Sid: "AllowCloudFrontAccessIdentity"
+            - Sid: "AllowCloudFrontServicePrincipalReadOnly"
               Effect: Allow
               Action: s3:GetObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
               Principal:
-                AWS:
-                  Fn::Join:
-                    - " "
-                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
-                      - !Ref OriginAccessIdentity
-
-    OriginAccessIdentity:
-      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
-      Properties:
-        CloudFrontOriginAccessIdentityConfig:
-          Comment: Access identity between CloudFront and S3 bucket
+                Service: cloudfront.amazonaws.com
+              Condition:
+                StringEquals:
+                  "AWS:SourceArn": !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${WebAppCloudFrontDistribution}
 
     ## Specifying the CloudFront Distribution to server your Web Application
     WebAppCloudFrontDistribution:
@@ -77,9 +64,9 @@ resources:
             - DomainName: !GetAtt WebAppS3Bucket.RegionalDomainName
               ## An identifier for the origin which must be unique within the distribution
               Id: myS3Origin
-              ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig
+              OriginAccessControlId: !GetAtt WebAppCloudFrontOriginAccessControl.Id
               S3OriginConfig:
-                OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${OriginAccessIdentity}
+                OriginAccessIdentity: ""
               # CustomOriginConfig:
               #   HTTPPort: 80
               #   HTTPSPort: 443
@@ -125,9 +112,16 @@ resources:
           #   Bucket: mylogs.s3.amazonaws.com
           #   Prefix: myprefix
 
+    WebAppCloudFrontOriginAccessControl:
+      Type: "AWS::CloudFront::OriginAccessControl"
+      Properties:
+        OriginAccessControlConfig:
+          Name: my-store-app-oac
+          OriginAccessControlOriginType: "s3"
+          SigningBehavior: "always"
+          SigningProtocol: "sigv4"
+
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
-    WebAppS3BucketOutput:
-      Value: !Ref WebAppS3Bucket
     WebAppCloudFrontDistributionOutput:
       Value: !GetAtt WebAppCloudFrontDistribution.DomainName
