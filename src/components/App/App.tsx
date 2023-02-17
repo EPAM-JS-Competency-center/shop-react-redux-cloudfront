@@ -6,7 +6,7 @@ import PageOrder from "~/components/pages/PageOrder/PageOrder";
 import PageProductImport from "~/components/pages/admin/PageProductImport/PageProductImport";
 import PageCart from "~/components/pages/PageCart/PageCart";
 import PageProducts from "~/components/pages/PageProducts/PageProducts";
-import { Typography } from "@mui/material";
+import PageError from "~/components/pages/PageError/PageError";
 
 function App() {
   return (
@@ -23,10 +23,7 @@ function App() {
           <Route index element={<PageProductForm />} />
           <Route path=":id" element={<PageProductForm />} />
         </Route>
-        <Route
-          path="*"
-          element={<Typography variant="h1">Not found</Typography>}
-        />
+        <Route path="*" element={<PageError />} />
       </Routes>
     </MainLayout>
   );

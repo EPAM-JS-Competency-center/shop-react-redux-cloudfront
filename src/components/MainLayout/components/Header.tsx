@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store!
+            Unicorn Guitar
           </Link>
         </Typography>
 
