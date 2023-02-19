@@ -46,7 +46,7 @@ Deploy the project build from `dist` folder to configured in `serverless.yml` AW
 
 Combination of `build` and `client:deploy` commands with or without confirmation.
 
-### `cloudfront:setup`
+### `cloudfront:deploy`
 
 Deploy configured in `serverless.yml` stack via CloudFormation.
 
@@ -69,3 +69,7 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+### `Clickable links for accesing S3 website and cloudfront content`
+[S3 Website URL](https://aws-js-shop-react-redux-cloudfront-new.s3.ap-south-1.amazonaws.com/index.html)
+[CloudFront URL](https://d1n0a46th5xr4l.cloudfront.net/)
