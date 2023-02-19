@@ -1,4 +1,4 @@
-service: my-store-app
+service: my-shop-app-gordeich
 
 frameworkVersion: "3"
 
@@ -15,19 +15,18 @@ plugins:
   # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
   # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
-  - serverless-s3-cleaner
+  # - serverless-s3-cleaner
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-shop-app-gordeich
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
-
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
-  serverless-s3-cleaner:
-    buckets:
-      - ${self:custom.client.bucketName}
+  # serverless-s3-cleaner:
+  #   buckets:
+  #     - ${self:custom.client.bucketName}
 
 resources:
   Resources:
