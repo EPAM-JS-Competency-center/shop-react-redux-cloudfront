@@ -5,6 +5,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "deploy:s3": "serverless client deploy --no-config-change --no-policy-change --no-cors-change",
     "preview": "npm run build && vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -60,6 +61,7 @@
     "serverless": "^3.20.0",
     "serverless-finch": "^4.0.0",
     "serverless-s3-cleaner": "^2.0.1",
+    "serverless-single-page-app-plugin": "file:./.serverless_plugins",
     "typescript": "^4.7.4",
     "vite": "^2.9.13",
     "vitest": "^0.17.1"
