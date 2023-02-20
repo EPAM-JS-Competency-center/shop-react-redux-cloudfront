@@ -1,10 +1,11 @@
-service: my-store-app
+service: aws-shop-cloudfront
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs14.x
+  profile: myUser
   region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
@@ -19,7 +20,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: game-shop-aws-bucket
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
