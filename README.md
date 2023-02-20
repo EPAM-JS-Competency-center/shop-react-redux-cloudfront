@@ -2,6 +2,13 @@
 
 ---
 
+## Manual Deployment URLs
+
+- CloudFront URL: https://da0zwf6ejbxow.cloudfront.net
+- S3-Website : https://cloudx-shop-fe-manual-deploy.s3.eu-central-1.amazonaws.com/index.html
+
+## Automated Deployment URLs
+
 - CloudFront URL: https://d1li9vq5pq9xq6.cloudfront.net
 - S3-Website : http://cloudx-shop-react-fe-tarik0192.s3-website.eu-central-1.amazonaws.com/
 
