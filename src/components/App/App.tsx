@@ -13,6 +13,10 @@ function App() {
     <MainLayout>
       <Routes>
         <Route path="/" element={<PageProducts />} />
+        <Route
+          path="*"
+          element={<Typography variant="h1">Not found 111</Typography>}
+        />
         <Route path="cart" element={<PageCart />} />
         <Route path="admin/orders">
           <Route index element={<PageOrders />} />
