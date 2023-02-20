@@ -1,3 +1,12 @@
+### What was done?
+
+1. Manual deployment Done(S3 bucket, CloudFront distribution, CloudFront distribution invalidation)
+2. Automated deployment using serverless-finch + serverless single-page-app plugins is done.
+
+- URL of s3 bucket: https://js-cc-shop-react-redux-cloudfront-pk.s3.us-east-2.amazonaws.com/index.html
+- URL of Manual deployment: https://d17vrzkv7d4ei7.cloudfront.net
+- URL of Automated deployment: https://dms1avqeylvnw.cloudfront.net
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
