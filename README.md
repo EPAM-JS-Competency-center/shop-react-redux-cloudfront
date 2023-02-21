@@ -4,8 +4,7 @@
 2. Automated deployment using serverless-finch + serverless single-page-app plugins is done.
 
 - URL of s3 bucket: https://js-cc-shop-react-redux-cloudfront-pk.s3.us-east-2.amazonaws.com/index.html
-- URL of Manual deployment: https://d17vrzkv7d4ei7.cloudfront.net
-- URL of Automated deployment: https://dms1avqeylvnw.cloudfront.net
+- URL of Automated deployment: https://dzn4906kv1zcw.cloudfront.net
 
 # React-shop-cloudfront
 
