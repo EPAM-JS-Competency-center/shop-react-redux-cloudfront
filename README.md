@@ -1,3 +1,13 @@
+# Task 2
+
+## CloudFront URL
+
+https://d105ivvmq0ks6d.cloudfront.net/
+
+## S3 URL with access denied
+
+https://aws-react-bucket-ikulikovskyi.s3.eu-west-1.amazonaws.com/index.html
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
