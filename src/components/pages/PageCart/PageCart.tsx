@@ -1,43 +1,30 @@
-import React, {useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import ReviewCart from 'components/pages/PageCart/components/ReviewCart';
-import ReviewOrder from 'components/pages/PageCart/components/ReviewOrder';
-import {useDispatch, useSelector} from "react-redux";
-import {selectCartItems, clearCart} from "store/cartSlice";
-import PaperLayout from "components/PaperLayout/PaperLayout";
-import {Formik, Form, FormikProps, FormikValues, FastField} from "formik";
-import Grid from "@material-ui/core/Grid";
-import {TextField} from 'formik-material-ui';
-import axios from "axios";
-import API_PATHS from "constants/apiPaths";
-import {AddressSchema, OrderSchema} from "models/Order";
+import React, { useState } from "react";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import ReviewCart from "~/components/pages/PageCart/components/ReviewCart";
+import ReviewOrder from "~/components/pages/PageCart/components/ReviewOrder";
+import PaperLayout from "~/components/PaperLayout/PaperLayout";
+import { Address, AddressSchema, Order } from "~/models/Order";
+import Box from "@mui/material/Box";
+import { useCart, useInvalidateCart } from "~/queries/cart";
+import AddressForm from "~/components/pages/PageCart/components/AddressForm";
+import { useSubmitOrder } from "~/queries/orders";
 
-const useStyles = makeStyles((theme) => ({
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-}));
+enum CartStep {
+  ReviewCart,
+  Address,
+  ReviewOrder,
+  Success,
+}
 
-const steps = ['Review your cart', 'Shipping address', 'Review your order'];
-
-const initialAddressValues: any = AddressSchema.cast();
+const initialAddressValues = AddressSchema.cast({});
 
 const CartIsEmpty = () => (
   <Typography variant="h6" gutterBottom>
-    The cart is empty. Didn't you like anything in our shop?
+    The cart is empty. Didn&apos;t you like anything in our shop?
   </Typography>
 );
 
@@ -47,87 +34,53 @@ const Success = () => (
       Thank you for your order.
     </Typography>
     <Typography variant="subtitle1">
-      Your order is placed. Our manager will call you soon to clarify the details.
+      Your order is placed. Our manager will call you soon to clarify the
+      details.
     </Typography>
   </React.Fragment>
 );
 
-const renderForm = () => (
-  <>
-    <Typography variant="h6" gutterBottom>
-      Shipping address
-    </Typography>
-    <Grid container spacing={2}>
-      <Grid item xs={12} sm={6}>
-        <FastField
-          component={TextField}
-          name="lastName"
-          label="Last Name"
-          fullWidth
-          autoComplete="off"
-          required
-        />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <FastField
-          component={TextField}
-          name="firstName"
-          label="First Name"
-          fullWidth
-          autoComplete="off"
-          required
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <FastField
-          component={TextField}
-          name="address"
-          label="Shipping address"
-          fullWidth
-          autoComplete="off"
-          multiline
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <FastField
-          component={TextField}
-          name="comment"
-          label="Comment"
-          fullWidth
-          autoComplete="off"
-          multiline
-        />
-      </Grid>
-    </Grid>
-  </>
-);
+const steps = ["Review your cart", "Shipping address", "Review your order"];
 
 export default function PageCart() {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState<number>(0);
-  const cartItems = useSelector(selectCartItems);
-  const isCartEmpty = !cartItems.length;
-  const [address, setAddress] = useState<FormikValues>(initialAddressValues);
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
-  const dispatch = useDispatch();
+  const { data = [] } = useCart();
+  const { mutate: submitOrder } = useSubmitOrder();
+  const invalidateCart = useInvalidateCart();
+  const [activeStep, setActiveStep] = React.useState<CartStep>(
+    CartStep.ReviewCart
+  );
+  const [address, setAddress] = useState<Address>(initialAddressValues);
+
+  const isCartEmpty = data.length === 0;
 
   const handleNext = () => {
-    setActiveStep(activeStep + 1);
-    if (activeStep === 2) {
-      const formattedValues = OrderSchema.cast({
-        items: cartItems.map(i => ({productId: i.product.id, count: i.count})),
-        address
-      });
-      axios.put(`${API_PATHS.order}/order`, formattedValues)
-        .then(() => {
-          dispatch(clearCart());
-          setActiveStep(activeStep + 1);
-        });
+    if (activeStep !== CartStep.ReviewOrder) {
+      setActiveStep((step) => step + 1);
+      return;
     }
+    const values = {
+      items: data.map((i) => ({
+        productId: i.product.id,
+        count: i.count,
+      })),
+      address,
+    };
+
+    submitOrder(values as Omit<Order, "id">, {
+      onSuccess: () => {
+        setActiveStep(activeStep + 1);
+        invalidateCart();
+      },
+    });
   };
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
+  };
+
+  const handleAddressSubmit = (values: Address) => {
+    setAddress(values);
+    handleNext();
   };
 
   return (
@@ -135,55 +88,50 @@ export default function PageCart() {
       <Typography component="h1" variant="h4" align="center">
         Checkout
       </Typography>
-      <Stepper activeStep={activeStep} className={classes.stepper}>
+      <Stepper
+        activeStep={activeStep}
+        sx={{ padding: (theme) => theme.spacing(3, 0, 5) }}
+      >
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
-      <React.Fragment>
-        <Formik
-          enableReinitialize={false}
-          initialValues={initialAddressValues}
-          validationSchema={AddressSchema}
-          isInitialValid={false}
-          onSubmit={() => undefined}
-        >
-          {(props: FormikProps<FormikValues>) => {
-            const {values, isValid} = props;
-            setAddress(values);
-            setIsFormValid(isValid);
-            return (
-              <Form>
-                {isCartEmpty && activeStep === 0 && <CartIsEmpty/>}
-                {activeStep === 0 && !isCartEmpty && <ReviewCart/>}
-                {activeStep === 1 && renderForm()}
-                {activeStep === 2 && <ReviewOrder address={address} items={cartItems}/>}
-                {activeStep === 3 && <Success/>}
-              </Form>
-            )
-          }}
-        </Formik>
-
-        {activeStep <= 2 && <div className={classes.buttons}>
-          {activeStep !== 0 && (
-            <Button onClick={handleBack} className={classes.button}>
-              Back
-            </Button>
-          )}
-          {!isCartEmpty && (
+      {isCartEmpty && <CartIsEmpty />}
+      {!isCartEmpty && activeStep === CartStep.ReviewCart && (
+        <ReviewCart items={data} />
+      )}
+      {activeStep === CartStep.Address && (
+        <AddressForm
+          initialValues={address}
+          onBack={handleBack}
+          onSubmit={handleAddressSubmit}
+        />
+      )}
+      {activeStep === CartStep.ReviewOrder && (
+        <ReviewOrder address={address} items={data} />
+      )}
+      {activeStep === CartStep.Success && <Success />}
+      {!isCartEmpty &&
+        activeStep !== CartStep.Address &&
+        activeStep !== CartStep.Success && (
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            {activeStep !== CartStep.ReviewCart && (
+              <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                Back
+              </Button>
+            )}
             <Button
               variant="contained"
               color="primary"
+              sx={{ mt: 3, ml: 1 }}
               onClick={handleNext}
-              className={classes.button}
-              disabled={activeStep === 1 && !isFormValid}
             >
-              {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-            </Button>)}
-        </div>}
-      </React.Fragment>
+              {activeStep === steps.length - 1 ? "Place order" : "Next"}
+            </Button>
+          </Box>
+        )}
     </PaperLayout>
   );
 }
