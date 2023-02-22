@@ -3,7 +3,7 @@
 1. Manual deployment Done(S3 bucket, CloudFront distribution, CloudFront distribution invalidation)
 2. Automated deployment using serverless-finch + serverless single-page-app plugins is done.
 
-- URL of s3 bucket: https://js-cc-shop-react-redux-cloudfront-pk.s3.us-east-2.amazonaws.com/index.html
+- URL of s3 bucket: http://music-store-s3-bucket.s3-website-us-east-1.amazonaws.com
 - URL of Automated deployment: https://dzn4906kv1zcw.cloudfront.net
 
 # React-shop-cloudfront
