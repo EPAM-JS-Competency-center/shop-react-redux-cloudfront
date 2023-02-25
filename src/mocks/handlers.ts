@@ -6,7 +6,7 @@ import { Order } from "~/models/Order";
 import { AvailableProduct, Product } from "~/models/Product";
 
 export const handlers = [
-  rest.get(`${API_PATHS.bff}/product`, (req, res, ctx) => {
+  rest.get(`${API_PATHS.product}/products`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(), ctx.json<Product[]>(products));
   }),
   rest.put(`${API_PATHS.bff}/product`, (req, res, ctx) => {
