@@ -1,32 +1,81 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {ProductSchema} from "models/Product";
-import {Field, Formik, FormikProps, FormikValues} from "formik";
-import Button from "@material-ui/core/Button";
-import * as Yup from "yup";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { Formik, Form, Field } from "formik";
+import TextField from "~/components/Form/TextField";
+import { Address, AddressSchema } from "~/models/Order";
 
+type AddressFormProps = {
+  initialValues: Address;
+  onBack: () => void;
+  onSubmit: (values: Address) => void;
+};
 
+const AddressForm = ({ initialValues, onBack, onSubmit }: AddressFormProps) => {
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={AddressSchema}
+      validateOnMount={true}
+      onSubmit={onSubmit}
+    >
+      <Form autoComplete="off">
+        <Typography variant="h6" gutterBottom>
+          Shipping address
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Field
+              component={TextField}
+              name="lastName"
+              label="Last Name"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Field
+              component={TextField}
+              name="firstName"
+              label="First Name"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Field
+              component={TextField}
+              name="address"
+              label="Shipping address"
+              fullWidth
+              multiline
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Field
+              component={TextField}
+              name="comment"
+              label="Comment"
+              fullWidth
+              multiline
+            />
+          </Grid>
+        </Grid>
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button onClick={onBack} sx={{ mt: 3, ml: 1 }}>
+            Back
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            sx={{ mt: 3, ml: 1 }}
+          >
+            Next
+          </Button>
+        </Box>
+      </Form>
+    </Formik>
+  );
+};
 
-// type AddressFormProps = {
-//   initialValues: object,
-//   onChange: any
-// };
-//
-// export default function AddressForm({initialValues, onChange}:AddressFormProps) {
-//   return (
-//     <React.Fragment>
-//
-//       <Formik
-//         initialValues={initialValues}
-//         validationSchema={ProductSchema}
-//         onSubmit={() => undefined}
-//       >
-//         {(props: FormikProps<FormikValues>) => <Form {...props} onChange={onChange} />}
-//       </Formik>
-//     </React.Fragment>
-//   );
-// }
+export default AddressForm;

@@ -1,45 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React-shop-cloudfront
+
+This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
+
+- [Vite](https://vitejs.dev/) as a project bundler
+- [React](https://beta.reactjs.org/) as a frontend framework
+- [React-router-dom](https://reactrouterdotcom.fly.dev/) as a routing library
+- [MUI](https://mui.com/) as a UI framework
+- [React-query](https://react-query-v3.tanstack.com/) as a data fetching library
+- [Formik](https://formik.org/) as a form library
+- [Yup](https://github.com/jquense/yup) as a validation schema
+- [Serverless](https://serverless.com/) as a serverless framework
+- [Vitest](https://vitest.dev/) as a test runner
+- [MSW](https://mswjs.io/) as an API mocking library
+- [Eslint](https://eslint.org/) as a code linting tool
+- [Prettier](https://prettier.io/) as a code formatting tool
+- [TypeScript](https://www.typescriptlang.org/) as a type checking tool
 
 ## Available Scripts
 
-In the project directory, you can run:  
-You can use NPM instead of YARN (Up to you)  
+### `start`
 
-### `yarn start` OR `npm run start`
+Starts the project in dev mode with mocked API on local environment.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `build`
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Builds the project for production in `dist` folder.
 
-### `yarn test` OR `npm run test`
+### `preview`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Starts the project in production mode on local environment.
 
-### `yarn build` OR `npm run build`
+### `test`, `test:ui`, `test:coverage`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Runs tests in console, in browser or with coverage.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `lint`, `prettier`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Runs linting and formatting for all files in `src` folder.
 
-### `yarn eject` OR `npm run eject`
+### `client:deploy`, `client:deploy:nc`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Deploy the project build from `dist` folder to configured in `serverless.yml` AWS S3 bucket with or without confirmation.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `client:build:deploy`, `client:build:deploy:nc`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Combination of `build` and `client:deploy` commands with or without confirmation.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `cloudfront:setup`
 
-## Learn More
+Deploy configured in `serverless.yml` stack via CloudFormation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `cloudfront:domainInfo`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Display cloudfront domain information in console.
+
+### `cloudfront:invalidateCache`
+
+Invalidate cloudfront cache.
+
+### `cloudfront:build:deploy`, `cloudfront:build:deploy:nc`
+
+Combination of `client:build:deploy` and `cloudfront:invalidateCache` commands with or without confirmation.
+
+### `cloudfront:update:build:deploy`, `cloudfront:update:build:deploy:nc`
+
+Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or without confirmation.
+
+### `serverless:remove`
+
+Remove an entire stack configured in `serverless.yml` via CloudFormation.
