@@ -1,33 +1,44 @@
-service: my-store-app
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
 
-frameworkVersion: "3"
+service: my-store-test
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs14.x
-  region: eu-west-1
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  runtime: nodejs12.x
 
 plugins:
   - serverless-finch
-  # 'serverless-single-page-app-plugin' is a custom plugin that located .serverless_plugins folder.
-  # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
-  # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
-  - serverless-s3-cleaner
-
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-second-store-test
     distributionFolder: dist
-  s3BucketName: ${self:custom.client.bucketName}
+  
 
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
-  serverless-s3-cleaner:
-    buckets:
-      - ${self:custom.client.bucketName}
+  s3BucketName: ${self:custom.client.bucketName}
+  # serverless-s3-cleaner:
+  #   buckets:
+  #     - ${self:custom.client.bucketName}
 
 resources:
   Resources:
@@ -124,6 +135,7 @@ resources:
           #   IncludeCookies: 'false'
           #   Bucket: mylogs.s3.amazonaws.com
           #   Prefix: myprefix
+          
 
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
@@ -131,3 +143,7 @@ resources:
       Value: !Ref WebAppS3Bucket
     WebAppCloudFrontDistributionOutput:
       Value: !GetAtt WebAppCloudFrontDistribution.DomainName
+
+
+
+
