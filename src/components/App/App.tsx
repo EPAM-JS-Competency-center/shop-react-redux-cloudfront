@@ -6,6 +6,7 @@ import PageOrder from "~/components/pages/PageOrder/PageOrder";
 import PageProductImport from "~/components/pages/admin/PageProductImport/PageProductImport";
 import PageCart from "~/components/pages/PageCart/PageCart";
 import PageProducts from "~/components/pages/PageProducts/PageProducts";
+import ErrorMessage from "../errorMessage/ErrorMessage";
 import { Typography } from "@mui/material";
 
 function App() {
@@ -25,7 +26,11 @@ function App() {
         </Route>
         <Route
           path="*"
-          element={<Typography variant="h1">Not found</Typography>}
+          element={
+            <Typography variant="h1">
+              <ErrorMessage />
+            </Typography>
+          }
         />
       </Routes>
     </MainLayout>

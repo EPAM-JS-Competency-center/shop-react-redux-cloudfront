@@ -69,3 +69,14 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+### Task 2.1:
+S3 bucket: https://the-book-spot.s3.eu-west-1.amazonaws.com/index.html
+CloudFront distribution: https://d3051hwpmn4fy7.cloudfront.net/
+### Task 2.2:
+CloudFront distribution: https://d1f7t4fz0yvm2b.cloudfront.net
+
+S3 bucket: https://the-book-spot-app.s3.eu-west-1.amazonaws.com/index.html
+(a status of 403 (Forbidden))
+
+### Task 3.1

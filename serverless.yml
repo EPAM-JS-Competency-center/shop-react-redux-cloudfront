@@ -1,4 +1,4 @@
-service: my-store-app
+service: the-book-spot-app
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: the-book-spot-app
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
