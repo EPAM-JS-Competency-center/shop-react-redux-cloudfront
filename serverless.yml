@@ -5,9 +5,10 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: ap-south-1
   # setup profile for AWS CLI.
   # profile: node-aws
+  profile: default
 
 plugins:
   - serverless-finch
@@ -19,12 +20,13 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: aws-js-shop-react-redux-cloudfront-new
     distributionFolder: dist
-  s3BucketName: ${self:custom.client.bucketName}
+    indexDocument: index.html
 
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
   serverless-s3-cleaner:
     buckets:
       - ${self:custom.client.bucketName}
@@ -76,7 +78,7 @@ resources:
           Origins:
             - DomainName: !GetAtt WebAppS3Bucket.RegionalDomainName
               ## An identifier for the origin which must be unique within the distribution
-              Id: myS3Origin
+              Id: new-aws-js-shop-react-redux-cloudfront
               ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig
               S3OriginConfig:
                 OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${OriginAccessIdentity}
