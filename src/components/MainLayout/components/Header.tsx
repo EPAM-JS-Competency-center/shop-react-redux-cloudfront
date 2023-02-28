@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            Bogdan's store
+            Bogdan`s store
           </Link>
         </Typography>
 
