@@ -1,11 +1,11 @@
 service: my-store-app
 
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: us-east-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -19,8 +19,9 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: new-s3-shop-react-redux-cloudfront
     distributionFolder: dist
+    indexDocument: index.html
   s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
@@ -51,15 +52,15 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
-            - Sid: "AllowCloudFrontAccessIdentity"
+            - Sid: 'AllowCloudFrontAccessIdentity'
               Effect: Allow
               Action: s3:GetObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
               Principal:
                 AWS:
                   Fn::Join:
-                    - " "
-                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
+                    - ' '
+                    - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity'
                       - !Ref OriginAccessIdentity
 
     OriginAccessIdentity:
@@ -98,8 +99,8 @@ resources:
               ResponseCode: 200
               ResponsePagePath: /index.html
           DefaultCacheBehavior:
-            AllowedMethods: ["GET", "HEAD", "OPTIONS"]
-            CachedMethods: ["GET", "HEAD", "OPTIONS"]
+            AllowedMethods: ['GET', 'HEAD', 'OPTIONS']
+            CachedMethods: ['GET', 'HEAD', 'OPTIONS']
             ForwardedValues:
               Headers:
                 - Access-Control-Request-Headers
