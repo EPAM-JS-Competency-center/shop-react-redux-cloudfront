@@ -1,12 +1,27 @@
 # Task 2
 
-## CloudFront URL
+### CloudFront URL
 
 https://d105ivvmq0ks6d.cloudfront.net/
 
-## S3 URL with access denied
+### S3 URL with access denied
 
 https://aws-react-bucket-ikulikovskyi.s3.eu-west-1.amazonaws.com/index.html
+
+# Task 3
+
+### CloudFront URL
+
+https://d105ivvmq0ks6d.cloudfront.net/
+
+### S3 URL with access denied
+
+http://aws-react-bucket-ikulikovskyi.s3-website-eu-west-1.amazonaws.com/
+
+### BE repository
+
+https://github.com/KulikovskyIgor/cloudx-backend
+
 
 # React-shop-cloudfront
 
