@@ -1,5 +1,5 @@
 {
-  "name": "my-store-app",
+  "name": "shop-react-redux-cloudfront-diego-epam",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -38,6 +38,7 @@
     "react-query": "^3.39.1",
     "react-router-dom": "^6.3.0",
     "yup": "^0.32.11"
+    ,"serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
