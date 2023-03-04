@@ -2,3 +2,5 @@ node_modules
 public
 vite.config.ts
 serverless.yml
+static-site.ts
+index.ts
