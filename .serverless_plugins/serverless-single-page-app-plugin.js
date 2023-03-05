@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const spawnSync = require('child_process').spawnSync;
+const spawnSync = require("child_process").spawnSync;
 
 class ServerlessPlugin {
   constructor(serverless, options) {
@@ -8,36 +8,29 @@ class ServerlessPlugin {
     this.options = options;
     this.commands = {
       syncToS3: {
-        usage: 'Deploys the `app` directory to your bucket',
-        lifecycleEvents: [
-          'sync',
-        ],
+        usage: "Deploys the `app` directory to your bucket",
+        lifecycleEvents: ["sync"],
       },
       domainInfo: {
-        usage: 'Fetches and prints out the deployed CloudFront domain names',
-        lifecycleEvents: [
-          'domainInfo',
-        ],
+        usage: "Fetches and prints out the deployed CloudFront domain names",
+        lifecycleEvents: ["domainInfo"],
       },
       invalidateCloudFrontCache: {
-        usage: 'Invalidates CloudFront cache',
-        lifecycleEvents: [
-          'invalidateCache',
-        ],
+        usage: "Invalidates CloudFront cache",
+        lifecycleEvents: ["invalidateCache"],
       },
     };
 
     this.hooks = {
-      'syncToS3:sync': this.syncDirectory.bind(this),
-      'domainInfo:domainInfo': this.domainInfo.bind(this),
-      'invalidateCloudFrontCache:invalidateCache': this.invalidateCache.bind(
-        this,
-      ),
+      "syncToS3:sync": this.syncDirectory.bind(this),
+      "domainInfo:domainInfo": this.domainInfo.bind(this),
+      "invalidateCloudFrontCache:invalidateCache":
+        this.invalidateCache.bind(this),
     };
   }
 
   runAwsCommand(args) {
-    let command = 'aws';
+    let command = "aws";
     if (this.serverless.variables.service.provider.region) {
       command = `${command} --region ${this.serverless.variables.service.provider.region}`;
     }
@@ -60,37 +53,38 @@ class ServerlessPlugin {
   // syncs the `app` directory to the provided bucket
   syncDirectory() {
     const s3Bucket = this.serverless.variables.service.custom.s3Bucket;
-    const buildFolder = this.serverless.variables.service.custom.client.distributionFolder;
+    const buildFolder =
+      this.serverless.variables.service.custom.client.distributionFolder;
     const args = [
-      's3',
-      'sync',
+      "s3",
+      "sync",
       `${buildFolder}/`,
       `s3://${s3Bucket}/`,
-      '--delete',
+      "--delete",
     ];
     const { sterr } = this.runAwsCommand(args);
     if (!sterr) {
-      this.serverless.cli.log('Successfully synced to the S3 bucket');
+      this.serverless.cli.log("Successfully synced to the S3 bucket");
     } else {
-      throw new Error('Failed syncing to the S3 bucket');
+      throw new Error("Failed syncing to the S3 bucket");
     }
   }
 
   // fetches the domain name from the CloudFront outputs and prints it out
   async domainInfo() {
-    const provider = this.serverless.getProvider('aws');
+    const provider = this.serverless.getProvider("aws");
     const stackName = provider.naming.getStackName(this.options.stage);
     const result = await provider.request(
-      'CloudFormation',
-      'describeStacks',
+      "CloudFormation",
+      "describeStacks",
       { StackName: stackName },
       this.options.stage,
-      this.options.region,
+      this.options.region
     );
 
     const outputs = result.Stacks[0].Outputs;
     const output = outputs.find(
-      entry => entry.OutputKey === 'WebAppCloudFrontDistributionOutput',
+      (entry) => entry.OutputKey === "WebAppCloudFrontDistributionOutput"
     );
 
     if (output && output.OutputValue) {
@@ -98,46 +92,46 @@ class ServerlessPlugin {
       return output.OutputValue;
     }
 
-    this.serverless.cli.log('Web App Domain: Not Found');
-    const error = new Error('Could not extract Web App Domain');
+    this.serverless.cli.log("Web App Domain: Not Found");
+    const error = new Error("Could not extract Web App Domain");
     throw error;
   }
 
   async invalidateCache() {
-    const provider = this.serverless.getProvider('aws');
+    const provider = this.serverless.getProvider("aws");
 
     const domain = await this.domainInfo();
 
     const result = await provider.request(
-      'CloudFront',
-      'listDistributions',
+      "CloudFront",
+      "listDistributions",
       {},
       this.options.stage,
-      this.options.region,
+      this.options.region
     );
 
     const distributions = result.DistributionList.Items;
     const distribution = distributions.find(
-      entry => entry.DomainName === domain,
+      (entry) => entry.DomainName === domain
     );
 
     if (distribution) {
       this.serverless.cli.log(
-        `Invalidating CloudFront distribution with id: ${distribution.Id}`,
+        `Invalidating CloudFront distribution with id: ${distribution.Id}`
       );
       const args = [
-        'cloudfront',
-        'create-invalidation',
-        '--distribution-id',
+        "cloudfront",
+        "create-invalidation",
+        "--distribution-id",
         distribution.Id,
-        '--paths',
+        "--paths",
         '"/*"',
       ];
       const { sterr } = this.runAwsCommand(args);
       if (!sterr) {
-        this.serverless.cli.log('Successfully invalidated CloudFront cache');
+        this.serverless.cli.log("Successfully invalidated CloudFront cache");
       } else {
-        throw new Error('Failed invalidating CloudFront cache');
+        throw new Error("Failed invalidating CloudFront cache");
       }
     } else {
       const message = `Could not find distribution with domain ${domain}`;

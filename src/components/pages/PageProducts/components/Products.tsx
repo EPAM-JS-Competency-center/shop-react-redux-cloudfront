@@ -1,66 +1,41 @@
-import React, {useEffect, useState} from 'react';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
-import {Product} from "models/Product";
-import {formatAsPrice} from "utils/utils";
-import AddProductToCart from "components/AddProductToCart/AddProductToCart";
-// import axios from 'axios';
-// import API_PATHS from "constants/apiPaths";
-import productList from "./productList.json";
-
-const useStyles = makeStyles((theme) => ({
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { formatAsPrice } from "~/utils/utils";
+import AddProductToCart from "~/components/AddProductToCart/AddProductToCart";
+import { useAvailableProducts } from "~/queries/products";
 
 export default function Products() {
-  const classes = useStyles();
-  const [products, setProducts] = useState<Product[]>([]);
+  const { data = [], isLoading } = useAvailableProducts();
 
-  useEffect(() => {
-    // axios.get(`${API_PATHS.bff}/product/available/`)
-    //   .then(res => setProducts(res.data));
-    setProducts(productList);
-  }, [])
+  if (isLoading) {
+    return <Typography>Loading...</Typography>;
+  }
 
   return (
     <Grid container spacing={4}>
-      {products.map((product: Product, index: number) => (
+      {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+      {data.map(({ count, ...product }, index) => (
         <Grid item key={product.id} xs={12} sm={6} md={4}>
-          <Card className={classes.card}>
+          <Card
+            sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+          >
             <CardMedia
-              className={classes.cardMedia}
+              sx={{ pt: "56.25%" }}
               image={`https://source.unsplash.com/random?sig=${index}`}
               title="Image title"
             />
-            <CardContent className={classes.cardContent}>
+            <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom variant="h5" component="h2">
                 {product.title}
               </Typography>
-              <Typography>
-                {formatAsPrice(product.price)}
-              </Typography>
+              <Typography>{formatAsPrice(product.price)}</Typography>
             </CardContent>
             <CardActions>
-              <AddProductToCart product={product}/>
+              <AddProductToCart product={product} />
             </CardActions>
           </Card>
         </Grid>
