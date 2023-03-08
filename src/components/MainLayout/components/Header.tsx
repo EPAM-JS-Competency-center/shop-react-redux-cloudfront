@@ -24,16 +24,16 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="relative">
+    <AppBar position="relative" sx={{ backgroundColor: "#007017" }}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           <Link
             component={RouterLink}
-            sx={{ color: "inherit" }}
+            sx={{ color: "#2c3338" }}
             underline="none"
             to="/"
           >
-            My Store!
+            My AWeSome Store!
           </Link>
         </Typography>
 
