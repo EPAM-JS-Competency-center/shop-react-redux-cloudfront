@@ -1,11 +1,11 @@
-service: my-store-app
+service: aws-react-tolga
 
 frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
-  region: eu-west-1
+  runtime: nodejs16.x
+  region: us-east-2
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: cloudx-aws-react-tolga
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
