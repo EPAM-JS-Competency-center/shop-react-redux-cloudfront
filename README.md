@@ -74,3 +74,6 @@ Remove an entire stack configured in `serverless.yml` via CloudFormation.
 ### Task 2 (Serve SPA in AWS S3 and Cloudfront Services)
  - [CloudFront URL](http://task-2-myshop2.s3-website-us-east-1.amazonaws.com)
  - [S3-website URL](https://dow5mqlkqive4.cloudfront.net)
+
+
+### Task 4 - will be provided soon
