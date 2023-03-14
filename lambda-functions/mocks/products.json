@@ -1,0 +1,37 @@
+[
+    {
+        "id": "1",
+        "title": "Photo",
+        "description": "desc1",
+        "price": 100,
+        "count": 100
+    },
+    {
+        "id": "2",
+        "title": "Photo-2",
+        "description": "desc2",
+        "price": 100,
+        "count": 100
+    },
+    {
+        "id": "3",
+        "title": "Photo-3",
+        "description": "desc3",
+        "price": 100,
+        "count": 100
+    },
+    {
+        "id": "4",
+        "title": "Photo-4",
+        "description": "desc4",
+        "price": 100,
+        "count": 100
+    },
+    {
+        "id": "5",
+        "title": "Photo-5",
+        "description": "desc5",
+        "price": 100,
+        "count": 100
+    }
+]
