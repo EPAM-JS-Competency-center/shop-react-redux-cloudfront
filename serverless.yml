@@ -1,4 +1,4 @@
-service: my-store-app
+service: shop-react-redux-cloudfront-sb-auto
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: shop-react-redux-cloudfront-sb-auto
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
