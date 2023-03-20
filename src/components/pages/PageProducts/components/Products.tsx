@@ -23,11 +23,11 @@ export default function Products() {
           <Card
             sx={{ height: "100%", display: "flex", flexDirection: "column" }}
           >
-            <CardMedia
+            {/* <CardMedia
               sx={{ pt: "56.25%" }}
               image={`https://source.unsplash.com/random?sig=${index}`}
               title="Image title"
-            />
+            /> */}
             <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom variant="h5" component="h2">
                 {product.title}
