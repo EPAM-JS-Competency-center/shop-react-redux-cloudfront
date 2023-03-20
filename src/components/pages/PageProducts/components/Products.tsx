@@ -6,15 +6,24 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { formatAsPrice } from "~/utils/utils";
 import AddProductToCart from "~/components/AddProductToCart/AddProductToCart";
-import { useAvailableProducts } from "~/queries/products";
+import { useAvailableAWSProducts, useAvailableProducts } from "~/queries/products";
 
 export default function Products() {
-  const { data = [], isLoading } = useAvailableProducts();
-
-  if (isLoading) {
+  const { data: availableProducts  = [], isLoading } = useAvailableProducts();
+  const { data: productList = [], isLoading: isProductListLoading } = useAvailableAWSProducts();
+  if (isLoading || isProductListLoading) {
     return <Typography>Loading...</Typography>;
   }
 
+  const productsWithStock = productList.results.Items.map((item:any) => {
+      return {
+        ...item,
+        count:  productList.stock.Items.find((stockItem: any) => stockItem.product_id === item.id)?.count || 0
+      }
+  });
+
+  const data = [...availableProducts, ...productsWithStock];
+  
   return (
     <Grid container spacing={4}>
       {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
@@ -25,7 +34,7 @@ export default function Products() {
           >
             <CardMedia
               sx={{ pt: "56.25%" }}
-              image={`https://source.unsplash.com/random?sig=${index}`}
+              image={product.image || `https://source.unsplash.com/random?sig=${index}`}
               title="Image title"
             />
             <CardContent sx={{ flexGrow: 1 }}>

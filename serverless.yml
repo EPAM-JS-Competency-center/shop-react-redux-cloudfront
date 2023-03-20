@@ -1,5 +1,4 @@
-service: my-store-app
-
+service: my-store-camarena
 frameworkVersion: "3"
 
 provider:
@@ -19,7 +18,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-store-camarena
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
