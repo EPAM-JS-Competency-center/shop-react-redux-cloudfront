@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: my-app-aws-v2
+service: my-app-aws-v1
 # app and org for use with dashboard.serverless.com
 #app: your-app-name
 #org: your-org-name
@@ -36,7 +36,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-app-aws-v2
+    bucketName: my-app-aws-v1
     distributionFolder: dist
 
   ## Serverless-single-page-app-plugin configuration:
