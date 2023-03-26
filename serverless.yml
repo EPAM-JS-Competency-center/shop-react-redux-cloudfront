@@ -1,13 +1,30 @@
-service: my-store-app
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
 
-frameworkVersion: "3"
+service: my-app-aws-v2
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: '3'
 
 provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: xiolow
 
 plugins:
   - serverless-finch
@@ -19,12 +36,12 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-app-aws-v2
     distributionFolder: dist
-  s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
   serverless-s3-cleaner:
     buckets:
       - ${self:custom.client.bucketName}
