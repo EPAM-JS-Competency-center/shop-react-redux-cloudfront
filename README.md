@@ -1,3 +1,15 @@
+# Task 2
+- [CloudFront link](https://d2je9gevzu7exf.cloudfront.net)
+- [S3 link](https://discworld-book-shop-03.s3.amazonaws.com/index.html) - returns 403 as per task
+- Manual part was successfully done, sources were destroyed as per task
+
+To reproduce on your machine:
+1. `Git clone git@github.com:Angoulema/shop-react-redux-cloudfront.git`
+2. Run `npm install`
+3. Run `npm run cloudfront:setup`
+4. Run `npm run client:deploy:nc`
+5. Get your app address with `npm run cloudfront:domainInfo`
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:

@@ -5,9 +5,9 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: us-east-1
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: sandx
 
 plugins:
   - serverless-finch
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: discworld-book-shop-03
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -43,7 +43,7 @@ resources:
         # VersioningConfiguration:
         #   Status: Enabled
 
-    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
+    ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
     WebAppS3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
@@ -123,7 +123,7 @@ resources:
           # Logging:
           #   IncludeCookies: 'false'
           #   Bucket: mylogs.s3.amazonaws.com
-          #   Prefix: myprefix
+          #   Prefix: discworld
 
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
