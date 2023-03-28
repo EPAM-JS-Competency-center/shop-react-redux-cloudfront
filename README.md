@@ -1,4 +1,8 @@
-# React-shop-cloudfront
+# Soccer Shop
+
+#URLS:
+- [Cloudfront](https://d1woy1337wrj09.cloudfront.net/)
+- [S3](https://soccer-shop.s3.eu-central-1.amazonaws.com/index.html)
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
