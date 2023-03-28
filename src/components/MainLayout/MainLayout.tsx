@@ -8,9 +8,9 @@ import Box from "@mui/material/Box";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
+      {"Copyright © Kiryl's Store 2023"}
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
-        My Store
+        Kiryl's Store
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

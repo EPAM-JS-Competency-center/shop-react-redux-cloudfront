@@ -5,9 +5,9 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: us-east-1
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: sandx
 
 plugins:
   - serverless-finch
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: kiryl-shaliapin-store-app-cloudx-aws-practitioner-for-js-2023
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
