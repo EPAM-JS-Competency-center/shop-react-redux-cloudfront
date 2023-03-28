@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            Dzmitry's store!!!
+            Soccer Shop
           </Link>
         </Typography>
 
