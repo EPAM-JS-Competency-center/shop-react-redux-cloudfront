@@ -1,3 +1,24 @@
+# Module 2 Serving SPA in AWS
+
+## Links
+
+- [S3](https://kiryl-shaliapin-store-app-cloudx-aws-practitioner-for-js-2023.s3.amazonaws.com/index.html) should return 403. Not public access.
+- [Cloudfront](https://d1ofr3elavvr18.cloudfront.net/) minor changes in text.
+
+## Prerequisites
+
+To Run this serverless deployment prossess you need a sandx profile with access. Node version 14 and higher.
+
+## Run
+
+### `npm install`
+
+Will install all dependencies
+
+### `npm run cloudfront:update:build:deploy`
+
+Will create a S3 bucket, configure it, create a cloudfront and link it to S3 bucket. Will build project and deploy it.
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
