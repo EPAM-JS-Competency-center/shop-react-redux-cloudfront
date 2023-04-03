@@ -1,25 +1,21 @@
-service: my-store-app
+service: my-ds-store-app
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
-  # setup profile for AWS CLI.
-  # profile: node-aws
+  region: us-east-1
+  profile: sandx
 
 plugins:
   - serverless-finch
-  # 'serverless-single-page-app-plugin' is a custom plugin that located .serverless_plugins folder.
-  # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
-  # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
   - serverless-s3-cleaner
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: ds-t2-shop-auto
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
