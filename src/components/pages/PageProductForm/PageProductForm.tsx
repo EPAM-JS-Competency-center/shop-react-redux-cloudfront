@@ -27,7 +27,7 @@ export default function PageProductForm() {
     const productToSave = id
       ? {
           ...formattedValues,
-          id,
+          productId: id,
         }
       : formattedValues;
     return upsertAvailableProduct(productToSave, {
