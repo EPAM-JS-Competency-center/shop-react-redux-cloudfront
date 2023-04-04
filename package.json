@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "vite",
+    "dev": "USE_MOCKS=false npm run start",
     "build": "tsc && vite build",
     "preview": "npm run build && vite preview",
     "test": "vitest",
