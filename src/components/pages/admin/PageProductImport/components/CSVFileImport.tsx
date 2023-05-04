@@ -26,23 +26,35 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
   const uploadFile = async () => {
     console.log("uploadFile to", url);
 
-    if (file) {
-      const response = await axios({
-        method: "GET",
-        url,
-        params: {
-          name: encodeURIComponent(file.name),
-        },
-      });
+    try {
+      if (file) {
+        const token = localStorage.getItem("authorization_token");
+        const response = await axios({
+          method: "GET",
+          url,
+          headers: token
+            ? {
+                Authorization: `Basic ${token}`,
+              }
+            : {},
+          params: {
+            name: encodeURIComponent(file.name),
+          },
+        });
 
-      await fetch(response.data, {
-        method: "PUT",
-        body: file,
-      });
+        await fetch(response.data, {
+          method: "PUT",
+          body: file,
+        });
 
-      setFile(null);
+        setFile(null);
+        return alert("Success");
+      }
+    } catch (error) {
+      return alert("Error: " + error);
     }
   };
+
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
