@@ -1,0 +1,6 @@
+projectKey=shop-react-redux-cloudfront
+serverUrl=http://localhost:9000
+serverVersion=10.0.0.68432
+dashboardUrl=http://localhost:9000/dashboard?id=shop-react-redux-cloudfront
+ceTaskId=AYhE9DFmCLAbWj9ge51s
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYhE9DFmCLAbWj9ge51s
