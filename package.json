@@ -6,6 +6,8 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "npm run build && vite preview",
+    "deploy:s3": "serverless client deploy --no-config-change --no-policy-change --no-cors-change",
+    "build:deploy": "npm run build && npm run deploy:s3",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
@@ -37,7 +39,8 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.1",
     "react-router-dom": "^6.3.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -57,7 +60,7 @@
     "jsdom": "^20.0.0",
     "msw": "^0.43.1",
     "prettier": "2.7.1",
-    "serverless": "^3.20.0",
+    "serverless": "^3.35.2",
     "serverless-finch": "^4.0.0",
     "serverless-s3-cleaner": "^2.0.1",
     "typescript": "^4.7.4",
