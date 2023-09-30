@@ -4,10 +4,10 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   region: eu-west-1
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: Admin
 
 plugins:
   - serverless-finch
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: andrews-react-bucket-1
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
