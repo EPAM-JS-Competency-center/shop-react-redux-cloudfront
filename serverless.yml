@@ -19,12 +19,12 @@ plugins:
 
 custom:
   client:
-    bucketName: andrews-react-bucket-1
+    bucketName: andrews-react-bucket-2
     distributionFolder: dist
-  s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
+  s3BucketName: ${self:custom.client.bucketName}
   serverless-s3-cleaner:
     buckets:
       - ${self:custom.client.bucketName}
@@ -36,7 +36,7 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        # AccessControl: PublicRead
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
