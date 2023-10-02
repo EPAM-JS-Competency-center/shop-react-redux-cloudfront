@@ -1,6 +1,18 @@
 # React-shop-cloudfront
 
-This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
+### Manual deployment:
+
+S3 Link: https://manual-js-cc-shop-react.s3.eu-west-1.amazonaws.com/index.html
+
+CloudFront Link: https://d3obf5376kt4vb.cloudfront.net
+
+### Manual deployment:
+
+S3 Link: https://manual-js-cc-shop-react.s3.eu-west-1.amazonaws.com/index.html
+
+CloudFront Link: https://d3ujewb9lgzul7.cloudfront.net
+
+#### This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
 - [React](https://beta.reactjs.org/) as a frontend framework

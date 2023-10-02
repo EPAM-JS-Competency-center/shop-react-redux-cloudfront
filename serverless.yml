@@ -1,4 +1,4 @@
-service: my-store-app
+service: serverless-js-cc-shop-react
 
 frameworkVersion: "3"
 
@@ -6,28 +6,18 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
-  # setup profile for AWS CLI.
-  # profile: node-aws
 
 plugins:
   - serverless-finch
-  # 'serverless-single-page-app-plugin' is a custom plugin that located .serverless_plugins folder.
-  # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
-  # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
-  - serverless-s3-cleaner
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: serverless-js-cc-shop-react
     distributionFolder: dist
+  singlePageApp:
+    index: index.html
   s3BucketName: ${self:custom.client.bucketName}
-
-  ## Serverless-single-page-app-plugin configuration:
-  s3LocalPath: ${self:custom.client.distributionFolder}/
-  serverless-s3-cleaner:
-    buckets:
-      - ${self:custom.client.bucketName}
 
 resources:
   Resources:
@@ -36,7 +26,8 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
@@ -51,6 +42,15 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
+            - Sid: "AllowPublicAccess"
+              Effect: Allow
+              Action:
+                - s3:ListBucket
+                - s3:GetObject
+              Resource:
+                - arn:aws:s3:::${self:custom.s3BucketName}/*
+                - arn:aws:s3:::${self:custom.s3BucketName}
+              Principal: "*"
             - Sid: "AllowCloudFrontAccessIdentity"
               Effect: Allow
               Action: s3:GetObject
@@ -74,7 +74,7 @@ resources:
       Properties:
         DistributionConfig:
           Origins:
-            - DomainName: !GetAtt WebAppS3Bucket.RegionalDomainName
+            - DomainName: ${self:custom.s3BucketName}.s3.amazonaws.com
               ## An identifier for the origin which must be unique within the distribution
               Id: myS3Origin
               ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig
@@ -118,7 +118,7 @@ resources:
             DefaultTTL: 0
           ## The certificate to use when viewers use HTTPS to request objects.
           ViewerCertificate:
-            CloudFrontDefaultCertificate: true
+            CloudFrontDefaultCertificate: "true"
           ## Uncomment the following section in case you want to enable logging for CloudFront requests
           # Logging:
           #   IncludeCookies: 'false'
@@ -128,6 +128,8 @@ resources:
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
     WebAppS3BucketOutput:
-      Value: !Ref WebAppS3Bucket
+      Value:
+        "Ref": WebAppS3Bucket
     WebAppCloudFrontDistributionOutput:
-      Value: !GetAtt WebAppCloudFrontDistribution.DomainName
+      Value:
+        "Fn::GetAtt": [WebAppCloudFrontDistribution, DomainName]
