@@ -9,6 +9,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
+      <p> {"Cloudfront Serverless Plugin Deploy"}</p>
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
         My Store
       </Link>{" "}
