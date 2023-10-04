@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 
 export default function PageProducts() {
   return (
-    <Box py={3}>
-      <Products />
-    </Box>
+    <>
+      <h1>Page Is Deployed on S3</h1>
+      <Box py={3}>
+        <Products />
+      </Box>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-service: my-store-app
+service: bee-shop-app
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: bee-shop-app
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -36,12 +36,16 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: ObjectWriterÏ
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
-        # VersioningConfiguration:
-        #   Status: Enabled
+        VersioningConfiguration:
+          Status: Enabled
 
     ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
     WebAppS3BucketPolicy:
