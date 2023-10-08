@@ -1,37 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'index.css';
-import App from 'components/App/App';
-import {store} from 'store/store';
-import {Provider} from 'react-redux';
-import * as serviceWorker from './serviceWorker';
-import CssBaseline from "@material-ui/core/CssBaseline";
-import axios from 'axios';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import App from "~/components/App/App";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { theme } from "~/theme";
 
-axios.interceptors.response.use(
-  response => {
-    return response;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },
   },
-  function(error) {
-    if (error?.response?.status === 400) {
-      alert(error.response.data?.data);
-    }
+});
 
-    return Promise.reject(error?.response ?? error);
-  }
-);
+if (import.meta.env.DEV) {
+  const { worker } = await import("./mocks/browser");
+  worker.start({ onUnhandledRequest: "bypass" });
+}
 
-ReactDOM.render(
+const container = document.getElementById("app");
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const root = createRoot(container!);
+root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <CssBaseline/>
-      <App/>
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

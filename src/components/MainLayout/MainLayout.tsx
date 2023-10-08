@@ -1,50 +1,46 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import Container from "@material-ui/core/Container";
-import Header from "components/MainLayout/components/Header";
+import React from "react";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Container from "@mui/material/Container";
+import Header from "~/components/MainLayout/components/Header";
+import Box from "@mui/material/Box";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      {"Copyright © "}
+      <Link color="inherit" href="https://material-ui.com/" underline="hover">
         My Store
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingBottom: theme.spacing(8),
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
-
-const MainLayout: React.FC = ({children}) => {
-  const classes = useStyles();
-
+const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <>
-      <Header/>
+      <Header />
       <main>
-        <Container className={classes.container} maxWidth="md">
-          {children!}
+        <Container sx={{ pb: 8 }} maxWidth="md">
+          {children}
         </Container>
       </main>
-      <footer className={classes.footer}>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+      <Box
+        component={"footer"}
+        sx={{ bgcolor: (theme) => theme.palette.background.paper, padding: 6 }}
+      >
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="textSecondary"
+          component="p"
+        >
           Thank you for your purchase!
         </Typography>
-        <Copyright/>
-      </footer>
+        <Copyright />
+      </Box>
     </>
   );
 };
