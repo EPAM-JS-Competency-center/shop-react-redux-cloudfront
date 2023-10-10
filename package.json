@@ -22,6 +22,7 @@
     "cloudfront:build:deploy:nc": "npm run client:build:deploy:nc && npm run cloudfront:invalidateCache",
     "cloudfront:update:build:deploy": "npm run cloudfront:setup && npm run cloudfront:build:deploy",
     "cloudfront:update:build:deploy:nc": "npm run cloudfront:setup && npm run cloudfront:build:deploy:nc",
+    "cloudfront:setup:client:build:deploy": "npm run cloudfront:setup && npm run client:build:deploy:nc",
     "serverless:remove": "sls remove"
   },
   "dependencies": {
