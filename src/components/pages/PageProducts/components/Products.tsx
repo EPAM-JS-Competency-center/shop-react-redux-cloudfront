@@ -12,7 +12,7 @@ export default function Products() {
   const { data = [], isLoading } = useAvailableProducts();
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <Typography>Loading 🕦</Typography>;
   }
 
   return (
