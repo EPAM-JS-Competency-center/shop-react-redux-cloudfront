@@ -1,6 +1,8 @@
+org: cngman
+app: shop-cloudx-epam
 service: my-store-app
 
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: aws
@@ -19,11 +21,11 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: shop-epam-cloudx-cnm
     distributionFolder: dist
+    indexDocument: index.html
+    manageResources: false
   s3BucketName: ${self:custom.client.bucketName}
-
-  ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
   serverless-s3-cleaner:
     buckets:
@@ -36,14 +38,15 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
         # VersioningConfiguration:
         #   Status: Enabled
 
-    ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
+    ## Specifying the policies to make sure all files inside the Bucket are available to CloudFront
     WebAppS3BucketPolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
@@ -51,15 +54,15 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
-            - Sid: "AllowCloudFrontAccessIdentity"
+            - Sid: 'AllowCloudFrontAccessIdentity'
               Effect: Allow
               Action: s3:GetObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
               Principal:
                 AWS:
                   Fn::Join:
-                    - " "
-                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
+                    - ' '
+                    - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity'
                       - !Ref OriginAccessIdentity
 
     OriginAccessIdentity:
@@ -98,8 +101,8 @@ resources:
               ResponseCode: 200
               ResponsePagePath: /index.html
           DefaultCacheBehavior:
-            AllowedMethods: ["GET", "HEAD", "OPTIONS"]
-            CachedMethods: ["GET", "HEAD", "OPTIONS"]
+            AllowedMethods: ['GET', 'HEAD', 'OPTIONS']
+            CachedMethods: ['GET', 'HEAD', 'OPTIONS']
             ForwardedValues:
               Headers:
                 - Access-Control-Request-Headers
@@ -126,6 +129,7 @@ resources:
           #   Prefix: myprefix
 
   ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
+
   Outputs:
     WebAppS3BucketOutput:
       Value: !Ref WebAppS3Bucket
