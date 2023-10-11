@@ -71,7 +71,7 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
 
 ### CloudFront URL:
-http://shop-react-redux-cloudfront-alejandro-santoyo.s3-website-us-west-1.amazonaws.com/
+d230bz6smnwkuc.cloudfront.net
 
 ### S3 url:
 http://shop-react-redux-cloudfront-alejandro-santoyo.s3-website-us-west-1.amazonaws.com/
