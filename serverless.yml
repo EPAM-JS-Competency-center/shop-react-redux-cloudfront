@@ -1,4 +1,4 @@
-service: my-store-app
+service: my-store-app-riustin
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: roman-app
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 

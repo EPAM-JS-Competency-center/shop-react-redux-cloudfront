@@ -1,5 +1,12 @@
 # React-shop-cloudfront
 
+## Links
+
+| name       | link                                                 |
+| ---------- | ---------------------------------------------------- |
+| cloudfront | https://d3spgngky6c937.cloudfront.net                |
+| s3         | http://roman-app.s3-website.eu-north-1.amazonaws.com |
+
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
