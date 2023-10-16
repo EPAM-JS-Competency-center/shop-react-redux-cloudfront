@@ -9,8 +9,9 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
+      <p> {"Cloudfront Serverless Plugin Deploy - Mukesh"}</p>
       <Link color="inherit" href="https://material-ui.com/" underline="hover">
-        My Store
+        Mukesh Store
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

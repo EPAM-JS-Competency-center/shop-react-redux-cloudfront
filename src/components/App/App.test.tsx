@@ -13,18 +13,20 @@ import { formatAsPrice } from "~/utils/utils";
 test("Renders products list", async () => {
   const products: AvailableProduct[] = [
     {
-      id: "1",
-      title: "Product 1",
-      description: "Product 1 description",
-      price: 1,
-      count: 1,
+      "count": 7,
+      "description": "Perfect code. Master-class - an updated edition of the time-tested bestseller. A book that makes you think and helps you create the perfect code. And it doesn't matter if you are a beginner or a pro, in this publication you will definitely find information for growth and work on your project.",
+      "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a2",
+      "price": 23,
+      "title": "Perfect code. Master Class. Steve McConnell",
+      "logo": "https://r5.readrate.com/img/pictures/basic/792/792600/7926009/w800h317-da60182f.jpg"
     },
     {
-      id: "2",
-      title: "Product 2",
-      description: "Product 2 description",
-      price: 2,
-      count: 2,
+      "count": 12,
+      "description": "The book “At the peak. How to maintain maximum efficiency without burnout \"is especially necessary for programmers who are accustomed to plunge headlong into work, not keeping track of time and waste of resources such as strength and health. ",
+      "id": "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
+      "price": 15,
+      "title": "At the peak. How to maintain maximum efficiency without burnout. Brad Stahlberg, Steve Magness",
+      "logo": "https://r2.readrate.com/img/pictures/basic/792/792601/7926010/w800h317-04d81319.jpg"
     },
   ];
   server.use(
