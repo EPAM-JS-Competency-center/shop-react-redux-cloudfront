@@ -1,29 +1,24 @@
-service: my-store-app
+service: bee-shop-app
 
 frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
   region: eu-west-1
   # setup profile for AWS CLI.
   # profile: node-aws
 
 plugins:
   - serverless-finch
-  # 'serverless-single-page-app-plugin' is a custom plugin that located .serverless_plugins folder.
-  # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
-  # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
   - serverless-s3-cleaner
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: bee-shop-auto-app
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
-
-  ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
   serverless-s3-cleaner:
     buckets:
@@ -36,12 +31,16 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: ObjectWriter
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
-        # VersioningConfiguration:
-        #   Status: Enabled
+        VersioningConfiguration:
+          Status: Enabled
 
     ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
     WebAppS3BucketPolicy:
@@ -102,9 +101,6 @@ resources:
             CachedMethods: ["GET", "HEAD", "OPTIONS"]
             ForwardedValues:
               Headers:
-                - Access-Control-Request-Headers
-                - Access-Control-Request-Method
-                - Origin
                 - Authorization
               ## Defining if and how the QueryString and Cookies are forwarded to the origin which in this case is S3
               QueryString: false
