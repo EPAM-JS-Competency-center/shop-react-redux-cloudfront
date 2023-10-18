@@ -15,7 +15,7 @@ import {
 } from "~/queries/products";
 
 export default function ProductsTable() {
-  const { data = [] } = useAvailableProducts();
+  const { data } = useAvailableProducts();
   const { mutate: deleteAvailableProduct } = useDeleteAvailableProduct();
   const invalidateAvailableProducts = useInvalidateAvailableProducts();
 
@@ -32,7 +32,7 @@ export default function ProductsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((product) => (
+          {data?.items.map((product) => (
             <TableRow key={product.id}>
               <TableCell component="th" scope="row">
                 {product.title}
