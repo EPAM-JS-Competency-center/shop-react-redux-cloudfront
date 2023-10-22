@@ -1,3 +1,8 @@
+# Links to aws deployed resource
+- [s3 bucket direct resource link](http://aws-js-training-2.s3-website-us-east-1.amazonaws.com/)
+- [cloudfront link](https://d2fgmflxm3bqqx.cloudfront.net)
+
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
