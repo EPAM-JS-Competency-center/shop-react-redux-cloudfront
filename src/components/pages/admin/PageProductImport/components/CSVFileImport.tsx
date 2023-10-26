@@ -34,13 +34,18 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
         name: encodeURIComponent(file?.name ?? ""),
       },
     });
-    console.log("File to upload: ", file?.name);
-    console.log("Uploading to: ", response.data);
-    const result = await fetch(response.data, {
-      method: "PUT",
-      body: file,
-    });
-    console.log("Result: ", result);
+
+    const { signedUrl } = response.data ?? {};
+
+    if (signedUrl) {
+      console.log("File to upload: ", file?.name);
+      console.log("Uploading to: ", signedUrl);
+      const result = await fetch(signedUrl, {
+        method: "PUT",
+        body: file,
+      });
+      console.log("Result: ", result);
+    }
     setFile(undefined);
   };
   return (
