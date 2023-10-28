@@ -1,13 +1,15 @@
-service: my-store-app
+org: puneetsharma
+app: learnaws
+service: learnaws
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: ap-south-1
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: default
 
 plugins:
   - serverless-finch
@@ -19,7 +21,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: awslearn5678902
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -36,12 +38,20 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        #AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
+        OwnershipControls:
+           Rules:
+              - ObjectOwnership: ObjectWriter  
         # VersioningConfiguration:
-        #   Status: Enabled
+        #   Status: Enabled 
 
     ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
     WebAppS3BucketPolicy:
