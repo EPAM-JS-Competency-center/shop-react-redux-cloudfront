@@ -14,6 +14,10 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const auth = true;
+  
+  if(!localStorage.getItem('authorization_token')) {
+    localStorage.setItem('authorization_token', "Basic TXVrZXNoMDU0OlRFU1RfUEFTU1dPUkQ=")
+  }
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -33,7 +37,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            My Store!
+            Mukesh Store!
           </Link>
         </Typography>
 
