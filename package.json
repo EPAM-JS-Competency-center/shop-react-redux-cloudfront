@@ -1,10 +1,16 @@
 {
-  "name": "store",
-  "version": "0.1.0",
+  "name": "my-store-app",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "npm run build && vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint --ignore-path .gitignore --fix src",
+    "prettier": "prettier src --write",
     "client:deploy": "sls client deploy --no-config-change --no-policy-change --no-cors-change",
     "client:deploy:nc": "npm run client:deploy -- --no-confirm",
     "client:build:deploy": "npm run build && npm run client:deploy",
@@ -16,61 +22,54 @@
     "cloudfront:build:deploy:nc": "npm run client:build:deploy:nc && npm run cloudfront:invalidateCache",
     "cloudfront:update:build:deploy": "npm run cloudfront:setup && npm run cloudfront:build:deploy",
     "cloudfront:update:build:deploy:nc": "npm run cloudfront:setup && npm run cloudfront:build:deploy:nc",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "serverless:remove": "sls remove"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@reduxjs/toolkit": "^1.2.5",
-    "@types/lodash": "^4.14.158",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.43",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-redux": "^7.1.7",
-    "@types/react-router-dom": "^5.1.5",
-    "@types/yup": "^0.29.3",
-    "axios": "^0.19.2",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.4",
-    "formik": "^2.1.5",
-    "formik-material-ui": "^2.0.1",
-    "lodash": "^4.17.19",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "serverless": "^2.29.0",
-    "serverless-finch": "^2.6.0",
-    "typescript": "~3.7.2",
-    "yup": "^0.29.1"
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.7",
+    "@mui/styles": "^5.8.7",
+    "@types/yup": "^0.29.14",
+    "axios": "^0.27.2",
+    "formik": "^2.2.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.1",
+    "react-router-dom": "^6.3.0",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0"
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.1",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-query": "^1.2.9",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "@vitejs/plugin-react": "^1.3.2",
+    "@vitest/ui": "^0.18.0",
+    "c8": "^7.11.3",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "jsdom": "^20.0.0",
+    "msw": "^0.43.1",
+    "prettier": "2.7.1",
+    "serverless": "^3.20.0",
+    "serverless-finch": "^4.0.0",
+    "serverless-s3-cleaner": "^2.0.1",
+    "typescript": "^4.7.4",
+    "vite": "^2.9.13",
+    "vitest": "^0.17.1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "msw": {
+    "workerDirectory": "public"
   },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
