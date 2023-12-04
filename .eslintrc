@@ -4,6 +4,7 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "prettier/prettier": ["error", { "endOfLine": "auto" }],
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
