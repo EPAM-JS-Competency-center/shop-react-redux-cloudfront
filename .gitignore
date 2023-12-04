@@ -9,6 +9,9 @@ lerna-debug.log*
 
 node_modules
 .serverless
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
 coverage
 dist
 dist-ssr
