@@ -32,7 +32,7 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
 
     const authorization_token = localStorage.getItem("authorization_token");
     if (!authorization_token) {
-      return alert("authorization token is incorrect");
+      return alert("you have no auth token");
     }
 
     const response = await axios({
