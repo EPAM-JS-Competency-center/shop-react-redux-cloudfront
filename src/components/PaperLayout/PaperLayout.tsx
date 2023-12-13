@@ -1,39 +1,34 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import React from "react";
+import Paper from "@mui/material/Paper";
+import { useTheme } from "@mui/material";
+import Box from "@mui/system/Box";
 
-const useStyles = makeStyles((theme) => ({
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
-  },
-}));
-
-const PaperLayout:React.FC = ({children}) =>  {
-  const classes = useStyles();
-
+const PaperLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const theme = useTheme();
   return (
-    <div className={classes.layout}>
-      <Paper className={classes.paper}>
+    <Box
+      sx={{
+        width: "auto",
+        mx: 2,
+        [theme.breakpoints.up("sm")]: {
+          width: 600,
+          mx: "auto",
+        },
+      }}
+    >
+      <Paper
+        sx={{
+          my: 3,
+          padding: 2,
+          [theme.breakpoints.up("sm")]: {
+            my: 6,
+            padding: 3,
+          },
+        }}
+      >
         {children}
       </Paper>
-    </div>
+    </Box>
   );
 };
 
