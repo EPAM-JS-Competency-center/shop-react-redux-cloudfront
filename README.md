@@ -72,5 +72,7 @@ Remove an entire stack configured in `serverless.yml` via CloudFormation.
 
 ## Links to S3 and CloudFront to task 2 from Jose Carvajal
 
+Here are the links requested for task 2
+
 [S3](https://shop-react-redux-cloudfront-task2.s3.amazonaws.com/index.html)
 [CloudFront](https://d2fp6kelr1m5d.cloudfront.net)
