@@ -70,9 +70,18 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
 
-## Links to S3 and CloudFront to task 2 from Jose Carvajal
+## Links to tasks from Jose Carvajal
 
-Here are the links requested for task 2
+### Links for task 2
 
-[S3](https://shop-react-redux-cloudfront-task2.s3.amazonaws.com/index.html)
-[CloudFront](https://d2fp6kelr1m5d.cloudfront.net)
+[Link for S3](https://shop-react-redux-cloudfront-task2.s3.amazonaws.com/index.html)
+
+[Link for CloudFront](https://d2fp6kelr1m5d.cloudfront.net)
+
+### Links for task 3
+
+[Link for GET endpoint for getProductsList](https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products)
+
+[Link for GET endpoint for getProductsById](https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products/{productId})
+
+Example: https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products/1
