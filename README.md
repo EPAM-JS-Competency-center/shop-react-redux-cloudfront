@@ -85,3 +85,9 @@ Remove an entire stack configured in `serverless.yml` via CloudFormation.
 [Link for GET endpoint for getProductsById](https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products/{productId})
 
 Example: https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products/1
+
+### Links for task 4
+
+[Link for CloudFront](https://d2fp6kelr1m5d.cloudfront.net)
+
+[Link for POST endpoint for createProduct](https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products)
