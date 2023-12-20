@@ -25,6 +25,7 @@
     "serverless:remove": "sls remove"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.477.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
@@ -32,6 +33,7 @@
     "@mui/styles": "^5.8.7",
     "@types/yup": "^0.29.14",
     "axios": "^0.27.2",
+    "csv-parser": "^3.0.0",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
