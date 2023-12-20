@@ -1,0 +1,44 @@
+service: import-service
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+      Resource: "arn:aws:s3:::cloud-course-task-5/upload/*"
+  
+plugins:
+  - serverless-finch
+  - serverless-s3-cleaner  	
+  - serverless-plugin-common-excludes
+  - serverless-plugin-include-dependencies
+
+custom:
+  client:
+    bucketName: epam-aws-coruse-task-5
+  s3BucketName: ${self:custom.client.bucketName}
+  
+  serverless-s3-cleaner:
+    buckets:
+      - ${self:custom.client.bucketName}
+
+functions:
+  importProductsFile:
+    handler: handler.importProductsFile
+    events:
+      - http:
+          path: import
+          method: get
+  importFileParser:
+      handler: handler.importFileParser
+      events:
+        - s3:
+            bucket: ${self:custom.s3BucketName}
+            event: s3:ObjectCreated:*
+            rules:
+              - prefix: uploaded/
+              - suffix: .csv
