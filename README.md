@@ -91,3 +91,9 @@ Example: https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products/1
 [Link for CloudFront](https://d2fp6kelr1m5d.cloudfront.net)
 
 [Link for POST endpoint for createProduct](https://bsoxq54hhi.execute-api.us-east-1.amazonaws.com/products)
+
+### Links for task 6
+
+[Link for CloudFront](https://d2fp6kelr1m5d.cloudfront.net)
+
+SQS created using the catalogBatchProcess lambda function
