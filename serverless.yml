@@ -1,3 +1,5 @@
+org: serhii664
+app: aws-react-project
 service: my-store-app
 
 frameworkVersion: "3"
@@ -7,7 +9,7 @@ provider:
   runtime: nodejs14.x
   region: eu-west-1
   # setup profile for AWS CLI.
-  # profile: node-aws
+  # profile: zebraaws
 
 plugins:
   - serverless-finch
@@ -19,7 +21,9 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-store-app-dev-serverlessdeploymentbucket
+    # I am confused since Cloud Formation always add random string next to the bucketName like
+    # bucketName: my-store-app-dev-serverlessdeploymentbucket-xw89ovtvw8mj
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 

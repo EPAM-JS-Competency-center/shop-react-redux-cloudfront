@@ -23,6 +23,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <>
       <Header />
       <main>
+        Hello 3/17/2024
         <Container sx={{ pb: 8 }} maxWidth="md">
           {children}
         </Container>
