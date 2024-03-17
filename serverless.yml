@@ -1,13 +1,13 @@
-service: my-store-app
+service: store-app
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs14.x
-  region: eu-west-1
+  region: us-east-1
   # setup profile for AWS CLI.
-  # profile: node-aws
+  profile: node-aws
 
 plugins:
   - serverless-finch
@@ -19,10 +19,11 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: cloud-dev-store-app
     distributionFolder: dist
+    indexDocument: index.html
+    manageResources: true
   s3BucketName: ${self:custom.client.bucketName}
-
   ## Serverless-single-page-app-plugin configuration:
   s3LocalPath: ${self:custom.client.distributionFolder}/
   serverless-s3-cleaner:
@@ -42,6 +43,9 @@ resources:
           ErrorDocument: index.html
         # VersioningConfiguration:
         #   Status: Enabled
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: ObjectWriter
 
     ## Specifying the policies to make sure all files inside the Bucket are avaialble to CloudFront
     WebAppS3BucketPolicy:

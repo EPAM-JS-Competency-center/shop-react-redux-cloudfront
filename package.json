@@ -31,7 +31,7 @@
     "@mui/material": "^5.8.7",
     "@mui/styles": "^5.8.7",
     "@types/yup": "^0.29.14",
-    "axios": "^0.27.2",
+    "axios": "^1.6.7",
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -61,7 +61,7 @@
     "serverless-finch": "^4.0.0",
     "serverless-s3-cleaner": "^2.0.1",
     "typescript": "^4.7.4",
-    "vite": "^2.9.13",
+    "vite": "^5.1.6",
     "vitest": "^0.17.1"
   },
   "msw": {
