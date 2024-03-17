@@ -1,3 +1,8 @@
+# HOMEWORK TASK-2
+
+Task-2-1 -> https://d3cii0s1hei4k2.cloudfront.net
+Task-2-2 -> https://d2229dvyk82shg.cloudfront.net
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
