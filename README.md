@@ -1,6 +1,7 @@
 # React-shop-cloudfront
 
-Deployed on AWS at [link](http://andrii-first-app.s3-website.eu-central-1.amazonaws.com/).
+Deployed on AWS S3 at [link](http://andrii-first-app.s3-website.eu-central-1.amazonaws.com/).
+Deployed on AWS CludFront at [link](https://andrii-first-app.s3.eu-central-1.amazonaws.com/index.html).
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
