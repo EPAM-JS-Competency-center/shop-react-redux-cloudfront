@@ -52,7 +52,7 @@ class ServerlessPlugin {
 
   // syncs the `app` directory to the provided bucket
   syncDirectory() {
-    const s3Bucket = this.serverless.variables.service.custom.s3Bucket;
+    const s3Bucket = this.serverless.variables.service.custom.s3BucketName;
     const buildFolder =
       this.serverless.variables.service.custom.client.distributionFolder;
     const args = [
