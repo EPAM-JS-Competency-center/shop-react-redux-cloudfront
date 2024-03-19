@@ -13,6 +13,9 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    chunkSizeWarningLimit: 700,
+  },
   test: {
     globals: true,
     environment: "jsdom",

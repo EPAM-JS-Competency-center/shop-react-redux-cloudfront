@@ -1,0 +1,13 @@
+# it works like a .gitignore
+# for sls
+README.md
+*.log
+
+# ignore aws-sdk
+node_modules/aws-sdk/*
+
+.env.example
+.git/*
+__tests__/*
+
+.DS_Store
