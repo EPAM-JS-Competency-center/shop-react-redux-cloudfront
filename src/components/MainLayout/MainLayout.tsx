@@ -23,6 +23,11 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <>
       <Header />
       <main>
+        <h1 style={{
+          margin: '20px'
+        }}>
+          Products (visible change)
+        </h1>`
         <Container sx={{ pb: 8 }} maxWidth="md">
           {children}
         </Container>
