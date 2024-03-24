@@ -16,6 +16,15 @@ export function useAvailableProducts() {
   );
 }
 
+export function useAllProducts() {
+  return useQuery<AvailableProduct[], AxiosError>("products", async () => {
+    const res = await axios.get<AvailableProduct[]>(
+      `${API_PATHS.products}/products`
+    );
+    return res.data;
+  });
+}
+
 export function useInvalidateAvailableProducts() {
   const queryClient = useQueryClient();
   return React.useCallback(
