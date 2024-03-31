@@ -40,6 +40,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "serverless-single-page-app-plugin": "file:./serverless-single-page-app-plugin",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
