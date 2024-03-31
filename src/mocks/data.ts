@@ -5,34 +5,34 @@ import { AvailableProduct, Product } from "~/models/Product";
 
 export const products: Product[] = [
   {
-    description: "Short Product Description1",
+    description: "Short Mortal Combat X Description",
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
     price: 24,
-    title: "ProductOne",
+    title: "Mortal Combat X",
   },
   {
-    description: "Short Product Description7",
+    description: "Short GrandTour Description",
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a1",
     price: 15,
-    title: "ProductTitle",
+    title: "GrandTour",
   },
   {
-    description: "Short Product Description2",
+    description: "Short GTA V Description",
     id: "7567ec4b-b10c-48c5-9345-fc73c48a80a3",
     price: 23,
-    title: "Product",
+    title: "GTA V",
   },
   {
-    description: "Short Product Description4",
+    description: "Short CS:GO Description",
     id: "7567ec4b-b10c-48c5-9345-fc73348a80a1",
     price: 15,
-    title: "ProductTest",
+    title: "CS:GO",
   },
   {
-    description: "Short Product Descriptio1",
+    description: "Short Rust Description",
     id: "7567ec4b-b10c-48c5-9445-fc73c48a80a2",
     price: 23,
-    title: "Product2",
+    title: "Rust",
   },
   {
     description: "Short Product Description7",

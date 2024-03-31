@@ -5,21 +5,18 @@ import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
 
 export function useAvailableProducts() {
-  return useQuery<AvailableProduct[], AxiosError>(
-    "available-products",
-    async () => {
-      const res = await axios.get<AvailableProduct[]>(
-        `${API_PATHS.bff}/product/available`
-      );
-      return res.data;
-    }
-  );
+  return useQuery<AvailableProduct[], AxiosError>("products", async () => {
+    const res = await axios.get<AvailableProduct[]>(
+      `${API_PATHS.bff}/products`
+    );
+    return res.data;
+  });
 }
 
 export function useInvalidateAvailableProducts() {
   const queryClient = useQueryClient();
   return React.useCallback(
-    () => queryClient.invalidateQueries("available-products", { exact: true }),
+    () => queryClient.invalidateQueries("products", { exact: true }),
     []
   );
 }

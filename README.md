@@ -69,3 +69,13 @@ Combination of `cloudfront:setup` and `cloudfront:build:deploy` commands with or
 ### `serverless:remove`
 
 Remove an entire stack configured in `serverless.yml` via CloudFormation.
+
+# Task 2
+
+Result:
+
+- CloudFrount (publicly available): https://dq27ikv1czeaj.cloudfront.net/
+- S3 (publicly access denied): http://kembek-games-app-content.s3-website-eu-west-1.amazonaws.com/
+
+Description:
+The `serverless.yml` file was updated and redundant comments were deleted.
