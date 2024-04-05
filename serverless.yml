@@ -1,4 +1,4 @@
-service: my-store-app
+service: fe-store-app
 
 frameworkVersion: "3"
 
@@ -6,6 +6,7 @@ provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
+  profile: admin
   # setup profile for AWS CLI.
   # profile: node-aws
 
@@ -19,7 +20,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: fe-product-shop-bucket
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -36,7 +37,14 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          IgnorePublicAcls: true
+          BlockPublicPolicy: true
+          RestrictPublicBuckets: true
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: BucketOwnerEnforced
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html
@@ -51,9 +59,11 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
-            - Sid: "AllowCloudFrontAccessIdentity"
+            - Sid: "AllowCloudFrontAccessIdentityForGetAndPut"
               Effect: Allow
-              Action: s3:GetObject
+              Action:
+                - s3:GetObject
+                - s3:PutObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
               Principal:
                 AWS:
@@ -98,7 +108,7 @@ resources:
               ResponseCode: 200
               ResponsePagePath: /index.html
           DefaultCacheBehavior:
-            AllowedMethods: ["GET", "HEAD", "OPTIONS"]
+            AllowedMethods: ["GET", "HEAD", "OPTIONS", "PUT", "POST"]
             CachedMethods: ["GET", "HEAD", "OPTIONS"]
             ForwardedValues:
               Headers:
