@@ -7,7 +7,9 @@ import { AvailableProduct, Product } from "~/models/Product";
 
 export const handlers = [
   rest.get(`${API_PATHS.bff}/product`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.delay(), ctx.json<Product[]>(products));
+    return fetch('https://jnmadux3s0.execute-api.eu-central-1.amazonaws.com/prod/products/')
+    .then(response => response.json())
+    .then(data => data);
   }),
   rest.put(`${API_PATHS.bff}/product`, (req, res, ctx) => {
     return res(ctx.status(200));
@@ -23,15 +25,9 @@ export const handlers = [
     );
   }),
   rest.get(`${API_PATHS.bff}/product/:id`, (req, res, ctx) => {
-    const product = availableProducts.find((p) => p.id === req.params.id);
-    if (!product) {
-      return res(ctx.status(404));
-    }
-    return res(
-      ctx.status(200),
-      ctx.delay(),
-      ctx.json<AvailableProduct>(product)
-    );
+    return fetch(`https://jnmadux3s0.execute-api.eu-central-1.amazonaws.com/prod/products/${req.params.id}`)
+      .then(response => response.json())
+      .then(data => data);
   }),
   rest.get(`${API_PATHS.cart}/profile/cart`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(), ctx.json<CartItem[]>(cart));
