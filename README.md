@@ -1,5 +1,15 @@
 # React-shop-cloudfront
 
+This is the omarlin benzan task 2 , please take a look
+
+CloudFront App URL: https://d2eglauwe1srlx.cloudfront.net
+
+S3 buckep app URL: http://myshop-omarlin.s3-website.us-east-2.amazonaws.com
+
+
+
+
+
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
