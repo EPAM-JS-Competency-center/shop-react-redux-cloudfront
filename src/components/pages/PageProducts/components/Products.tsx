@@ -6,10 +6,10 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { formatAsPrice } from "~/utils/utils";
 import AddProductToCart from "~/components/AddProductToCart/AddProductToCart";
-import { useAvailableProducts } from "~/queries/products";
+import { useAllProducts } from "~/queries/products";
 
 export default function Products() {
-  const { data = [], isLoading } = useAvailableProducts();
+  const { data = [], isLoading } = useAllProducts();
 
   if (isLoading) {
     return <Typography>Loading...</Typography>;
@@ -32,6 +32,7 @@ export default function Products() {
               <Typography gutterBottom variant="h5" component="h2">
                 {product.title}
               </Typography>
+              <Typography>{product.description}</Typography>
               <Typography>{formatAsPrice(product.price)}</Typography>
             </CardContent>
             <CardActions>
