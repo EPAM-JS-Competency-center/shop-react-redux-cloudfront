@@ -25,7 +25,7 @@ function App() {
         </Route>
         <Route
           path="*"
-          element={<Typography variant="h1">Not found</Typography>}
+          element={<Typography variant="h1">Not Found Page</Typography>}
         />
       </Routes>
     </MainLayout>

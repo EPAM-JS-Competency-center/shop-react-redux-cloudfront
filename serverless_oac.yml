@@ -4,14 +4,13 @@ frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs16.x
-  # region: us-east-1
+  runtime: nodejs18.x
+  region: us-east-1
   # setup profile for AWS CLI.
   profile: Delfin_admin
 
 plugins:
   - serverless-finch
-  # 'serverless-single-page-app-plugin' is a custom plugin that located .serverless_plugins folder.
   # Existing plugin (https://www.npmjs.com/package/serverless-single-page-app-plugin) doesn't have invalidate cache feature that often used during CI/CD events.
   # How to build your own plugins: https://www.serverless.com/framework/docs/providers/aws/guide/plugins#service-local-plugin
   - serverless-single-page-app-plugin
@@ -21,8 +20,6 @@ custom:
   client:
     bucketName: store-app-react-delfin
     distributionFolder: dist
-    indexDocument: index.html
-    manageResources: false
   s3BucketName: ${self:custom.client.bucketName}
 
   ## Serverless-single-page-app-plugin configuration:
@@ -38,12 +35,12 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: index.html
         OwnershipControls:
           Rules:
             - ObjectOwnership: ObjectWriter
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
         # VersioningConfiguration:
         #   Status: Enabled
 
@@ -55,22 +52,25 @@ resources:
           Ref: WebAppS3Bucket
         PolicyDocument:
           Statement:
-            - Sid: "AllowCloudFrontAccessIdentity"
+            - Sid: "AllowCloudFrontServicePrincipal"
               Effect: Allow
               Action: s3:GetObject
               Resource: arn:aws:s3:::${self:custom.s3BucketName}/*
               Principal:
-                AWS:
-                  Fn::Join:
-                    - " "
-                    - - "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity"
-                      - !Ref OriginAccessIdentity
+                Service: "cloudfront.amazonaws.com"
+              Condition:
+                StringEquals:
+                  AWS:SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${WebAppCloudFrontDistribution}
 
-    OriginAccessIdentity:
-      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    CloudFrontOriginAccessControl:
+      Type: AWS::CloudFront::OriginAccessControl
       Properties:
-        CloudFrontOriginAccessIdentityConfig:
-          Comment: Access identity between CloudFront and S3 bucket
+        OriginAccessControlConfig:
+          Description: Default Origin Access Control
+          Name: !Ref AWS::StackName
+          OriginAccessControlOriginType: s3
+          SigningBehavior: always
+          SigningProtocol: sigv4
 
     ## Specifying the CloudFront Distribution to server your Web Application
     WebAppCloudFrontDistribution:
@@ -83,7 +83,8 @@ resources:
               Id: myS3Origin
               ## In case you don't want to restrict the bucket access use CustomOriginConfig and remove S3OriginConfig
               S3OriginConfig:
-                OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${OriginAccessIdentity}
+                OriginAccessIdentity: ''
+              OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
               # CustomOriginConfig:
               #   HTTPPort: 80
               #   HTTPSPort: 443
