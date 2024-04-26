@@ -1,3 +1,11 @@
+
+S3 Bucket Link:
+http://shop-react-redux-cloudfront-smusaev.s3-website-us-east-1.amazonaws.com/
+
+CloudFront Link:
+https://d69bb7828appn.cloudfront.net/
+
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:

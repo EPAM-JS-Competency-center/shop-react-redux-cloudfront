@@ -1,6 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 type CSVFileImportProps = {
   url: string;
@@ -24,23 +25,43 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
 
   const uploadFile = async () => {
     console.log("uploadFile to", url);
+    try {
+      if (!file) {
+        return;
+      }
+      const response = await axios({
+        method: "GET",
+        headers: {
+          Authorization: `${localStorage.getItem("authorization_token")}`,
+        },
+        url,
+        params: {
+          name: encodeURIComponent(file.name),
+        },
+      });
 
-    // Get the presigned URL
-    // const response = await axios({
-    //   method: "GET",
-    //   url,
-    //   params: {
-    //     name: encodeURIComponent(file.name),
-    //   },
-    // });
-    // console.log("File to upload: ", file.name);
-    // console.log("Uploading to: ", response.data);
-    // const result = await fetch(response.data, {
-    //   method: "PUT",
-    //   body: file,
-    // });
-    // console.log("Result: ", result);
-    // setFile("");
+      if (response.status === 401) {
+        alert("Unauthorized: Invalid or expired token");
+        return;
+      }
+
+      if (response.status === 403) {
+        alert("Forbidden: You do not have permission to perform this action");
+        return;
+      }
+
+      console.log("File to upload: ", file.name);
+      console.log("Uploading to: ", response.data);
+      const result = await fetch(response.data, {
+        method: "PUT",
+        body: file,
+      });
+
+      console.log("Result: ", result);
+      setFile(undefined);
+    } catch (error) {
+      console.log(error, "Ddsdsds");
+    }
   };
   return (
     <Box>
