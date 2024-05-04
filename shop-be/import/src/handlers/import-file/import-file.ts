@@ -18,6 +18,9 @@ export const importFile: ValidatedEventAPIGatewayProxyEvent = async (event) => {
   }
 
   console.log(`importFile request with fileName: ${name}`);
+  console.log(
+    `importFile request user with Id: ${event.requestContext.authorizer?.userId}`,
+  );
 
   const s3Client = new S3Client({
     // @ts-ignore

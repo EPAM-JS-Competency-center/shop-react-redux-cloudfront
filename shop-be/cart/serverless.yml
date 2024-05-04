@@ -1,0 +1,45 @@
+service: 'cart'
+frameworkVersion: '3'
+plugins:
+  - serverless-offline
+custom:
+  stage: "${('opt:stage', 'dev')}"
+  authorizerArn:
+    Fn::ImportValue: 'BasicAuthorizerArn'
+provider:
+  name: 'aws'
+  runtime: 'nodejs18.x'
+  region: 'eu-west-1'
+  profile: 'awsTraining'
+  apiGateway:
+    minimumCompressionSize: 1024
+    shouldStartNameWithService: true
+  environment:
+    REGION: '${self:provider.region}'
+resources:
+  Resources:
+    GatewayResponse:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          'gatewayresponse.header.Access-Control-Allow-Origin': "'*'"
+          'gatewayresponse.header.Access-Control-Allow-Headers': "'*'"
+        ResponseType: 'DEFAULT_4XX'
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
+functions:
+  cartService:
+    handler: 'dist/main.handler'
+    events:
+       - http:
+          method: 'ANY'
+          path: '/{any+}'
+          cors: true
+          authorizer:
+            name: 'BasicAuthorizer'
+            arn: '${self:custom.authorizerArn}'
+            resultTtlInSeconds: 0
+            identitySource: 'method.request.header.Authorization'
+            type: 'token'
+package:
+ individually: true

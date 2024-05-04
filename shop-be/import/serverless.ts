@@ -84,6 +84,7 @@ const serverlessConfiguration: AWS = {
           CorsConfiguration: {
             CorsRules: [
               {
+                AllowedHeaders: ["*"],
                 AllowedMethods: ["PUT"],
                 AllowedOrigins: ["*"],
               },
@@ -132,7 +133,7 @@ const serverlessConfiguration: AWS = {
             "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
             "gatewayresponse.header.Access-Control-Allow-Headers": "'*'",
           },
-          ResponseType: "ACCESS_DENIED",
+          ResponseType: "DEFAULT_4XX",
           RestApiId: { Ref: "ApiGatewayRestApi" },
         },
       },

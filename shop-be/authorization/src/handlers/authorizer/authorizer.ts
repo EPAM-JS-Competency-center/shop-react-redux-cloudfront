@@ -19,16 +19,19 @@ export const authorizer: (
   const authUser = process.env.USER_NAME;
   const authPass = process.env.PASSWORD;
   const token = event?.authorizationToken.split(" ")[1];
+  const userId =
+    Buffer.from(token, "base64").toString("ascii").split(":")[0] || "";
   const authString = Buffer.from(authUser + ":" + authPass).toString("base64");
   const isAuthorized = token === authString;
 
-  return getPolicy(token, isAuthorized, event.methodArn);
+  return getPolicy(token, isAuthorized, event.methodArn, userId);
 };
 
 const getPolicy = (
   principalId: string,
   isAuthorized = false,
   resource: string,
+  userId: string,
 ): TAuthorizerResponse => ({
   principalId,
   policyDocument: {
@@ -40,5 +43,9 @@ const getPolicy = (
         Resource: [resource],
       },
     ],
+  },
+  // @ts-ignore
+  context: {
+    userId,
   },
 });

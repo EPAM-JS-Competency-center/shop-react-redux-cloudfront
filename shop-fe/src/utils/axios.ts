@@ -6,8 +6,9 @@ axios.interceptors.request.use(
     config.headers["Content-Type"] = "application/json";
 
     const token = localStorage.getItem("authorization_token");
+    const isAWSAuth = config?.url?.match(/.*X-Amz-Algorithm.*/);
 
-    if (token) {
+    if (token && !isAWSAuth) {
       config.headers["Authorization"] = "Bearer " + token;
     }
     return config;
