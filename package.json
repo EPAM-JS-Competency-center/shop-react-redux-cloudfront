@@ -22,7 +22,9 @@
     "cloudfront:build:deploy:nc": "npm run client:build:deploy:nc && npm run cloudfront:invalidateCache",
     "cloudfront:update:build:deploy": "npm run cloudfront:setup && npm run cloudfront:build:deploy",
     "cloudfront:update:build:deploy:nc": "npm run cloudfront:setup && npm run cloudfront:build:deploy:nc",
-    "serverless:remove": "sls remove"
+    "serverless:remove": "sls remove",
+    "azure:upload": "az storage blob upload-batch -s './dist' -d '$web' --account-name 'stgsandfrontendnes5una'",
+    "azure:upload:overwrite": "az storage blob upload-batch -s './dist' -d '$web' --account-name 'stgsandfrontendnes5una' --overwrite"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
