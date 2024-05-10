@@ -53,15 +53,7 @@ class ServerlessPlugin {
   // syncs the `app` directory to the provided bucket
   syncDirectory() {
     const s3Bucket = this.serverless.variables.service.custom.s3Bucket;
-    const buildFolder =
-      this.serverless.variables.service.custom.client.distributionFolder;
-    const args = [
-      "s3",
-      "sync",
-      `${buildFolder}/`,
-      `s3://${s3Bucket}/`,
-      "--delete",
-    ];
+    const args = ["s3", "sync", "app/", `s3://${s3Bucket}/`, "--delete"];
     const { sterr } = this.runAwsCommand(args);
     if (!sterr) {
       this.serverless.cli.log("Successfully synced to the S3 bucket");
@@ -125,7 +117,7 @@ class ServerlessPlugin {
         "--distribution-id",
         distribution.Id,
         "--paths",
-        '"/*"',
+        "/*",
       ];
       const { sterr } = this.runAwsCommand(args);
       if (!sterr) {
