@@ -1,4 +1,4 @@
-service: my-store-app
+service: my-app-dilbar
 
 frameworkVersion: "3"
 
@@ -19,7 +19,7 @@ plugins:
 
 custom:
   client:
-    bucketName: my-store-app
+    bucketName: my-app-dilbar
     distributionFolder: dist
   s3BucketName: ${self:custom.client.bucketName}
 
@@ -36,7 +36,12 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:custom.s3BucketName}
-        AccessControl: PublicRead
+        # AccessControl: PublicReady
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+        OwnershipControls:
+          Rules:
+            - ObjectOwnership: ObjectWriter
         WebsiteConfiguration:
           IndexDocument: index.html
           ErrorDocument: index.html

@@ -13,3 +13,11 @@ export const AvailableProductSchema = ProductSchema.shape({
 
 export type Product = Yup.InferType<typeof ProductSchema>;
 export type AvailableProduct = Yup.InferType<typeof AvailableProductSchema>;
+
+export interface IProduct {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  count: number;
+}

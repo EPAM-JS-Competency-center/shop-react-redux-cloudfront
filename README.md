@@ -1,3 +1,9 @@
+# Links using serverless
+CloudFront:
+- https://df0kx2g287rb9.cloudfront.net/
+S3: (forbidden 403)
+- http://my-first-app-dilbar.s3-website-eu-west-1.amazonaws.com/
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:

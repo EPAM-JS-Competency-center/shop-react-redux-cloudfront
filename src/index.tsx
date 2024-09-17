@@ -7,6 +7,22 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
+import axios from "axios";
+
+axios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        alert("Unauthorized");
+      } else if (error.response.status === 403) {
+        alert("Forbidden");
+      }
+    }
+    return Promise.reject(error);
+  });
 
 const queryClient = new QueryClient({
   defaultOptions: {
