@@ -7,6 +7,9 @@ import * as path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    outDir: 'infra/resources/build',
+  },
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "src"),
