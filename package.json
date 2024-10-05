@@ -6,6 +6,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "build-and-deploy": "npm run build && cd infra && cdk deploy",
+    "build-with-infra-and-deploy": "npm run build && cd infra && npm run build && cdk deploy",
     "preview": "npm run build && vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",

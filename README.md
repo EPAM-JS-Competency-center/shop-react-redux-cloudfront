@@ -7,6 +7,6 @@
 
 # Additional task (30 points)
 - This PR adds the ability to build and deploy the frontend app with a single npm command
-### `npm run build-and-deploy`
-
+### `npm run build-and-deploy` - i didn't add building of infra project as this is usually done 1 time, but in case everything needs to be build the command is 
+### `build-with-infra-and-deploy`
 Here is deployed with this command app - [d3f0ej3scayugn.cloudfront.net](https://d3f0ej3scayugn.cloudfront.net/)
