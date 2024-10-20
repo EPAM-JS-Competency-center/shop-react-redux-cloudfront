@@ -13,6 +13,10 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  build: {
+    outDir: "./infra/resources/build",
+    emptyOutDir: true,
+  },
   test: {
     globals: true,
     environment: "jsdom",

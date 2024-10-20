@@ -1,0 +1,50 @@
+# CloudFormation template in YAML
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Template to create an S3 bucket, OAC and CloudFront Distribution
+Resources:
+  AssetsBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "cloudx-manual-cloudformation-bucket"
+  AssetsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref AssetsBucket
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Resource: !Sub ${AssetsBucket.Arn}/*
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub arn:aws:cloudfront::${AWS::AccountId}:distribution/${AssetsDistribution}
+  CloudFrontOriginAccessControl:
+    Type: "AWS::CloudFront::OriginAccessControl"
+    Properties:
+      OriginAccessControlConfig:
+        Name: "cloudx-manual-cloudformation-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+  AssetsDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        DefaultRootObject: index.html
+        Enabled: true
+        DefaultCacheBehavior:
+          TargetOriginId: "S3Origin"
+          ViewerProtocolPolicy: "redirect-to-https"
+          AllowedMethods: ["GET", "HEAD"]
+          ForwardedValues:
+            QueryString: "false"
+            Cookies:
+              Forward: none
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt AssetsBucket.DomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id

@@ -1,3 +1,10 @@
+# Homework task 2
+
+[S3 Link (AWS Console option)](http://cloudx-manual-cloudformation-bucket.s3-website-us-east-1.amazonaws.com/)
+[CloudFrontLink (AWS Console option)](dz6y0t9djls6f.cloudfront.net)
+[CloudFrontLink (AWS CDK option)](https://d2nvx20kmoigbc.cloudfront.net/)
+
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
