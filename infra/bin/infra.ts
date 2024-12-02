@@ -8,6 +8,7 @@ import { ProductsDBStack } from "../lib/products-db-stack";
 import { ImportServiceStack } from "../lib/import-service-stack";
 import { ProductsSQSStack } from "../lib/products-sqs-stack";
 import { ProductsSNSStack } from "../lib/products-sns-stack";
+import { BackendIntegrationStack } from "../lib/backend-integration-stack";
 
 const envVars = {
   env: {
@@ -33,3 +34,5 @@ new ProductsLambdaStack(app, "ProductsLambdaStack", {
 });
 
 new ImportServiceStack(app, "ImportServiceStack", { productsSQSStack, ...envVars });
+
+new BackendIntegrationStack(app, 'BackendIntegrationStack', {})
